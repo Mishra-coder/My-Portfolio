@@ -174,10 +174,12 @@
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-20px);
   }
@@ -333,11 +335,9 @@ section.visible {
 }
 
 .skill-tag {
-  background: linear-gradient(
-    135deg,
-    rgba(99, 102, 241, 0.2) 0%,
-    rgba(139, 92, 246, 0.2) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(99, 102, 241, 0.2) 0%,
+      rgba(139, 92, 246, 0.2) 100%);
   border: 1px solid rgba(99, 102, 241, 0.3);
   color: var(--text-primary);
   padding: 0.5rem 1rem;
@@ -347,11 +347,9 @@ section.visible {
 }
 
 .skill-tag:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(99, 102, 241, 0.4) 0%,
-    rgba(139, 92, 246, 0.4) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(99, 102, 241, 0.4) 0%,
+      rgba(139, 92, 246, 0.4) 100%);
   transform: scale(1.05);
 }
 
@@ -403,6 +401,91 @@ section.visible {
   color: var(--primary-color);
 }
 
+/* Projects Section */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.project-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+}
+
+.project-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.25);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.project-icon {
+  font-size: 2.5rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.project-link {
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.project-link:hover {
+  color: var(--primary-color);
+  background: rgba(99, 102, 241, 0.1);
+  transform: translateY(-2px);
+}
+
+.project-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.project-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--secondary-color);
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
 /* Footer */
 .footer {
   background: rgba(15, 23, 42, 0.8);
@@ -436,6 +519,10 @@ section.visible {
   }
 
   .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid {
     grid-template-columns: 1fr;
   }
 
