@@ -55,7 +55,7 @@ const About = () => {
             }}>
                 <div className="about-text" style={{ margin: 0 }}>
                     <p style={{ marginBottom: '15px', color: 'var(--white-2)', fontSize: '1.05rem', lineHeight: '1.7' }}>
-                        I am a passionate **Full Stack & AI/ML Developer** pursuing my B.Tech in Computer Science at the <strong>Newton School of Technology, Pune</strong>.
+                        I am a passionate Full Stack & AI/ML Developer pursuing my B.Tech in Computer Science at the <strong>Newton School of Technology, Pune</strong>.
                         With a deep focus on building intelligent, user-centric applications, I specialize in the <strong>full stack, React Native, and applied AI algorithms</strong>.
                     </p>
                     <p style={{ color: 'var(--light-gray)', lineHeight: '1.7', fontSize: 'var(--fs-7)' }}>
