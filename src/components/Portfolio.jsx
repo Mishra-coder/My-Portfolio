@@ -5,25 +5,25 @@ import aromaLuxeImg from '../assets/aroma_luxe_web.png';
 const Portfolio = () => {
     const projects = [
         {
-            title: "Background Remover",
-            category: "Web Development",
-            image: bgRemoverImg,
-            link: "https://bg-remover-dm.vercel.app/",
-            github: "https://github.com/Mishra-coder/BG.Remover"
-        },
-        {
-            title: "Success Mantra Institute",
-            category: "Full Stack",
-            image: successMantraImg,
-            link: "https://success-mantra-dm.vercel.app/",
-            github: "https://github.com/Mishra-coder/Coaching_Website"
-        },
-        {
             title: "Aroma Luxe",
             category: "Mobile Development (React Native)",
             image: aromaLuxeImg,
             link: "https://perfume-app-h3ct.vercel.app/",
             github: "https://github.com/Mishra-coder/Perfume_APP"
+        },
+        {
+            title: "Success Mantra Institute",
+            category: "Full Stack Development",
+            image: successMantraImg,
+            link: "https://success-mantra-dm.vercel.app/",
+            github: "https://github.com/Mishra-coder/Coaching_Website"
+        },
+        {
+            title: "Background Remover",
+            category: "Web Development",
+            image: bgRemoverImg,
+            link: "https://bg-remover-dm.vercel.app/",
+            github: "https://github.com/Mishra-coder/BG.Remover"
         }
     ];
 
@@ -36,51 +36,80 @@ const Portfolio = () => {
             <section className="projects">
                 <ul className="project-list">
                     {projects.map((project, index) => (
-                        <li key={index} className="project-item active" data-filter-item data-category={project.category.toLowerCase()}>
-                            <div className="project-link-wrapper" style={{ position: 'relative' }}>
-                                <figure className="project-img">
+                        <li key={index} className="project-item active" data-filter-item data-category={project.category.toLowerCase()}
+                            onMouseEnter={(e) => {
+                                const iconBox = e.currentTarget.querySelector('.project-item-icon-box');
+                                if (iconBox) iconBox.style.opacity = '1';
+                                const img = e.currentTarget.querySelector('img');
+                                if (img) img.style.transform = 'scale(1.1)';
+                                const overlay = e.currentTarget.querySelector('.project-img-overlay');
+                                if (overlay) overlay.style.background = 'rgba(0,0,0,0.5)';
+                            }}
+                            onMouseLeave={(e) => {
+                                const iconBox = e.currentTarget.querySelector('.project-item-icon-box');
+                                if (iconBox) iconBox.style.opacity = '0';
+                                const img = e.currentTarget.querySelector('img');
+                                if (img) img.style.transform = 'scale(1)';
+                                const overlay = e.currentTarget.querySelector('.project-img-overlay');
+                                if (overlay) overlay.style.background = 'transparent';
+                            }}>
+                            <div className="project-link-wrapper" style={{ position: 'relative', cursor: 'pointer' }}>
+                                <figure className="project-img" style={{
+                                    height: '240px',
+                                    overflow: 'hidden',
+                                    position: 'relative',
+                                    borderRadius: '16px'
+                                }}>
+                                    <div className="project-img-overlay" style={{
+                                        position: 'absolute',
+                                        inset: 0,
+                                        background: 'transparent',
+                                        transition: 'var(--transition-1)',
+                                        zIndex: 1
+                                    }}></div>
                                     <div className="project-item-icon-box" style={{
                                         display: 'flex',
-                                        gap: '15px',
+                                        gap: '20px',
                                         opacity: 0,
-                                        transition: 'var(--transition-1)',
-                                        background: 'rgba(0,0,0,0.5)',
-                                        width: '100%',
-                                        height: '100%',
-                                        top: 0,
-                                        left: 0,
-                                        transform: 'none',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        borderRadius: '12px',
+                                        transition: 'all 0.3s ease',
                                         position: 'absolute',
+                                        top: '50%',
+                                        left: '50%',
+                                        transform: 'translate(-50%, -50%)',
                                         zIndex: 2
                                     }}>
-                                        <a href={project.link} target="_blank" rel="noreferrer" className="icon-link" title="Live Demo" style={{
+                                        <a href={project.link} target="_blank" rel="noreferrer" title="Live Demo" style={{
                                             background: 'var(--jet)',
                                             color: 'var(--orange-yellow-crayola)',
-                                            padding: '12px',
+                                            padding: '15px',
                                             borderRadius: '12px',
                                             fontSize: '24px',
-                                            display: 'flex'
-                                        }}>
+                                            display: 'flex',
+                                            boxShadow: 'var(--shadow-3)'
+                                        }} onClick={(e) => e.stopPropagation()}>
                                             <ion-icon name="eye-outline"></ion-icon>
                                         </a>
-                                        <a href={project.github} target="_blank" rel="noreferrer" className="icon-link" title="View Code" style={{
+                                        <a href={project.github} target="_blank" rel="noreferrer" title="View Code" style={{
                                             background: 'var(--jet)',
                                             color: 'var(--orange-yellow-crayola)',
-                                            padding: '12px',
+                                            padding: '15px',
                                             borderRadius: '12px',
                                             fontSize: '24px',
-                                            display: 'flex'
-                                        }}>
+                                            display: 'flex',
+                                            boxShadow: 'var(--shadow-3)'
+                                        }} onClick={(e) => e.stopPropagation()}>
                                             <ion-icon name="logo-github"></ion-icon>
                                         </a>
                                     </div>
-                                    <img src={project.image} alt={project.title} loading="lazy" />
+                                    <img src={project.image} alt={project.title} loading="lazy" style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover',
+                                        transition: 'transform 0.5s ease'
+                                    }} />
                                 </figure>
-                                <h3 className="project-title">{project.title}</h3>
-                                <p className="project-category">{project.category}</p>
+                                <h3 className="project-title" style={{ marginTop: '15px', fontSize: 'var(--fs-5)', color: 'var(--white-2)' }}>{project.title}</h3>
+                                <p className="project-category" style={{ color: 'var(--light-gray-70)', fontSize: 'var(--fs-8)' }}>{project.category}</p>
                             </div>
                         </li>
                     ))}
