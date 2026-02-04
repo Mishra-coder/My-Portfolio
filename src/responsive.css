@@ -28,7 +28,7 @@
     }
 
     .info-content .name {
-        font-size: var(--fs-4);
+        font-size: 1.5rem;
     }
 
     .info-content .title {
@@ -281,7 +281,7 @@
     }
 
     .info-content .name {
-        font-size: var(--fs-2);
+        font-size: 2.5rem;
     }
 
     .contact-list {

@@ -64,7 +64,7 @@ const Sidebar = () => {
                         </div>
                         <div className="contact-info">
                             <p className="contact-title">Birthday</p>
-                            <time dateTime="2004-01-01" style={{ color: 'var(--white-2)', fontSize: 'var(--fs-7)' }}>January 01, 2004</time>
+                            <time dateTime="2006-01-01" style={{ color: 'var(--white-2)', fontSize: 'var(--fs-7)' }}>January 01, 2006</time>
                         </div>
                     </li>
 
