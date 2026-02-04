@@ -1,7 +1,7 @@
 import React from 'react';
 import profileReal from '../assets/profile_real.png';
 import leetcodeIcon from '../assets/leetcode_icon.png';
-import mobileDevIcon from '../assets/mobile_dev_icon_v2.png';
+import mobileDevIcon from '../assets/mobile_dev_icon_new.png';
 import aiIcon from '../assets/ai_icon_v2.png';
 
 const About = () => {
