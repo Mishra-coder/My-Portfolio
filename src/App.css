@@ -981,3 +981,20 @@ article.active {
   transform: translateY(-3px);
   background: var(--bg-gradient-onyx) !important;
 }
+
+/* Form Input Enhancements */
+.form-input {
+  color: var(--white-2);
+  background: var(--bg-gradient-onyx);
+  border: 1px solid var(--jet);
+  transition: var(--transition-1);
+}
+
+.form-input::placeholder {
+  color: var(--light-gray-70);
+}
+
+.form-input:focus {
+  border-color: var(--orange-yellow-crayola);
+  background: var(--eerie-black-2);
+}
