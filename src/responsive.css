@@ -1,0 +1,340 @@
+/* ===================================
+   RESPONSIVE DESIGN - MOBILE FIRST
+   =================================== */
+
+/* Mobile Overrides (< 450px) */
+@media (max-width: 450px) {
+    .app-container {
+        padding: 0 10px;
+        margin: 10px auto;
+        gap: 20px;
+    }
+
+    .sidebar {
+        max-height: 112px;
+        margin-bottom: 15px;
+    }
+
+    .sidebar.active {
+        max-height: 420px;
+    }
+
+    .sidebar-info {
+        gap: 10px;
+    }
+
+    .avatar-box img {
+        width: 65px;
+    }
+
+    .info-content .name {
+        font-size: var(--fs-4);
+    }
+
+    .info-content .title {
+        font-size: var(--fs-8);
+    }
+
+    .contact-list {
+        gap: 8px;
+    }
+
+    .contact-item {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .contact-info :is(.contact-link, time, address) {
+        font-size: var(--fs-8);
+    }
+
+    .navbar {
+        margin-bottom: 15px;
+    }
+
+    .navbar-list {
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .navbar-link {
+        font-size: var(--fs-7);
+        padding: 8px 12px;
+    }
+
+    .h2,
+    .h3 {
+        font-size: var(--fs-2);
+    }
+
+    .h4 {
+        font-size: var(--fs-5);
+    }
+
+    .article-title {
+        margin-bottom: 20px;
+    }
+
+    .service-item {
+        padding: 20px !important;
+        gap: 15px !important;
+    }
+
+    .service-icon-box {
+        font-size: 32px !important;
+    }
+
+    .service-item-title {
+        font-size: var(--fs-5);
+    }
+
+    .about-intro {
+        padding: 20px !important;
+    }
+
+    .stat-card {
+        padding: 15px !important;
+        gap: 12px !important;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .timeline .icon-box {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 18px !important;
+    }
+
+    .timeline-item {
+        padding-left: 25px !important;
+    }
+
+    .timeline-text {
+        font-size: var(--fs-8) !important;
+    }
+
+    .project-item {
+        min-width: 100%;
+    }
+
+    .project-img {
+        border-radius: 12px;
+    }
+
+    .project-item-icon-box {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+
+    .achievement-card {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .achievement-img-box {
+        margin-right: 0 !important;
+        margin-bottom: 15px;
+    }
+
+    .skill-group-card {
+        padding: 20px !important;
+    }
+
+    .skills-grid {
+        gap: 12px !important;
+    }
+
+    .skill-badge {
+        padding: 8px 12px !important;
+        font-size: var(--fs-8) !important;
+    }
+
+    .resume-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 15px;
+    }
+
+    .download-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .resume-viewer iframe {
+        height: 600px !important;
+    }
+
+    .form-input {
+        padding: 12px 15px;
+    }
+
+    .form-btn {
+        width: 100%;
+    }
+}
+
+/* Small Tablets & Large Phones (450px - 580px) */
+@media (min-width: 450px) and (max-width: 580px) {
+    .navbar-list {
+        gap: 20px;
+    }
+
+    .service-list {
+        grid-template-columns: 1fr !important;
+    }
+
+    .project-item {
+        min-width: calc(50% - 10px);
+    }
+
+    .achievement-card {
+        flex-direction: row !important;
+    }
+}
+
+/* Tablet Portrait (580px - 768px) */
+@media (min-width: 580px) and (max-width: 768px) {
+    .sidebar {
+        max-height: unset;
+    }
+
+    .info_more-btn {
+        display: none;
+    }
+
+    .sidebar-info {
+        gap: 20px;
+    }
+
+    .avatar-box img {
+        width: 90px;
+    }
+
+    .navbar-list {
+        gap: 30px;
+    }
+
+    .navbar-link {
+        font-size: var(--fs-6);
+    }
+
+    .service-list {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    }
+
+    .project-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .achievement-list {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
+
+/* Tablet Landscape (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .app-container {
+        max-width: 720px;
+        margin: 40px auto;
+    }
+
+    .sidebar {
+        padding: 25px;
+    }
+
+    .avatar-box img {
+        width: 100px;
+    }
+
+    .service-list {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+    }
+
+    .achievement-card {
+        flex-direction: row !important;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+    }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+    .sidebar {
+        position: sticky;
+        top: 60px;
+        max-height: calc(100vh - 120px);
+        padding: 30px;
+    }
+
+    .sidebar-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .avatar-box img {
+        width: 120px;
+    }
+
+    .info-content .name {
+        font-size: var(--fs-2);
+    }
+
+    .contact-list {
+        margin-top: 20px;
+    }
+
+    .navbar-list {
+        justify-content: flex-start;
+        gap: 35px;
+    }
+
+    .service-list {
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)) !important;
+    }
+
+    .project-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .achievement-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .resume-viewer iframe {
+        height: 1150px !important;
+    }
+}
+
+/* Large Desktop (1250px+) */
+@media (min-width: 1250px) {
+    .app-container {
+        max-width: 1200px;
+    }
+
+    .service-list {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+/* Very Large Desktop (1400px+) */
+@media (min-width: 1400px) {
+    .app-container {
+        max-width: 1350px;
+    }
+}
+
+/* Orientation: Landscape on Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .sidebar {
+        max-height: unset;
+    }
+
+    .info_more-btn {
+        display: none;
+    }
+}
