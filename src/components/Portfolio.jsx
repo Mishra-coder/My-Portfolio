@@ -20,7 +20,7 @@ const Portfolio = () => {
         },
         {
             title: "Background Remover",
-            category: "Web Development",
+            category: "Frontend",
             image: bgRemoverImg,
             link: "https://bg-remover-dm.vercel.app/",
             github: "https://github.com/Mishra-coder/BG.Remover"
