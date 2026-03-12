@@ -1,16 +1,11 @@
 import bgRemoverImg from '../assets/bg_remover.png';
 import successMantraImg from '../assets/success_mantra_new.png';
 import aromaLuxeImg from '../assets/aroma_luxe_web.png';
+import akoinWebImg from '../assets/akoin_web.png';
+import karoPitchImg from '../assets/karo_pitch_web.png';
 
 const Portfolio = () => {
     const projects = [
-        {
-            title: "Aroma Luxe",
-            category: "Mobile Development (React Native)",
-            image: aromaLuxeImg,
-            link: "https://perfume-app-h3ct.vercel.app/",
-            github: "https://github.com/Mishra-coder/Perfume_APP"
-        },
         {
             title: "Success Mantra Institute",
             category: "Full Stack Development",
@@ -19,11 +14,32 @@ const Portfolio = () => {
             github: "https://github.com/Mishra-coder/Coaching_Website"
         },
         {
+            title: "Aroma Luxe",
+            category: "Mobile Development (React Native)",
+            image: aromaLuxeImg,
+            link: "https://perfume-app-h3ct.vercel.app/",
+            github: "https://github.com/Mishra-coder/Perfume_APP"
+        },
+        {
+            title: "Institute of Digital Risk (IDR)",
+            category: "Frontend Development",
+            image: akoinWebImg,
+            link: "https://akoin-seven.vercel.app/",
+            github: "https://github.com/Mishra-coder/AKOIN_"
+        },
+        {
             title: "Background Remover",
             category: "Frontend",
             image: bgRemoverImg,
             link: "https://bg-remover-dm.vercel.app/",
             github: "https://github.com/Mishra-coder/BG.Remover"
+        },
+        {
+            title: "Karo Pitch - Startup Platform",
+            category: "Frontend Development",
+            image: karoPitchImg,
+            link: "https://karo-pitch-liard.vercel.app/",
+            github: "https://github.com/Mishra-coder/Karo_Pitch"
         }
     ];
 
@@ -55,7 +71,8 @@ const Portfolio = () => {
                             }}>
                             <div className="project-link-wrapper" style={{ position: 'relative', cursor: 'pointer' }}>
                                 <figure className="project-img" style={{
-                                    height: '240px',
+                                    height: 'auto',
+                                    aspectRatio: '16/10',
                                     overflow: 'hidden',
                                     position: 'relative',
                                     borderRadius: '16px'

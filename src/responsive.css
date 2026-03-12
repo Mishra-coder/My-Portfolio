@@ -7,7 +7,8 @@
     .app-container {
         padding: 0 10px;
         margin: 10px auto;
-        gap: 20px;
+        gap: 15px;
+        grid-template-columns: 1fr;
     }
 
     .sidebar {
@@ -162,7 +163,7 @@
     }
 
     .resume-viewer iframe {
-        height: 600px !important;
+        height: 500px !important;
     }
 
     .form-input {
