@@ -1,6 +1,7 @@
 import bgRemoverImg from '../assets/bg_remover.png';
 import successMantraImg from '../assets/success_mantra_new.png';
 import aromaLuxeImg from '../assets/aroma_luxe_web.png';
+import zappifyMockupImg from '../assets/zappify_mockup.jpg';
 import akoinWebImg from '../assets/akoin_web.png';
 import karoPitchImg from '../assets/karo_pitch_web.png';
 
@@ -12,6 +13,14 @@ const Portfolio = () => {
             image: successMantraImg,
             link: "https://success-mantra-dm.vercel.app/",
             github: "https://github.com/Mishra-coder/Coaching_Website"
+        },
+        {
+            title: "Zappify - Premium Footwear",
+            category: "Mobile Development (React Native)",
+            image: zappifyMockupImg,
+            link: "https://zappify-sepia.vercel.app/",
+            github: "https://github.com/Mishra-coder/Zappify",
+            preview: "https://shorturl.at/17h2f"
         },
         {
             title: "Aroma Luxe",
@@ -93,25 +102,39 @@ const Portfolio = () => {
                                         top: '50%',
                                         left: '50%',
                                         transform: 'translate(-50%, -50%)',
-                                        zIndex: 2
+                                        zIndex: 2,
+                                        width: 'max-content'
                                     }}>
                                         <a href={project.link} target="_blank" rel="noreferrer" title="Live Demo" style={{
                                             background: 'var(--jet)',
                                             color: 'var(--orange-yellow-crayola)',
-                                            padding: '15px',
-                                            borderRadius: '12px',
-                                            fontSize: '24px',
+                                            padding: '12px',
+                                            borderRadius: '10px',
+                                            fontSize: '20px',
                                             display: 'flex',
                                             boxShadow: 'var(--shadow-3)'
                                         }} onClick={(e) => e.stopPropagation()}>
                                             <ion-icon name="eye-outline"></ion-icon>
                                         </a>
+                                        {project.preview && (
+                                            <a href={project.preview} target="_blank" rel="noreferrer" title="App Preview" style={{
+                                                background: 'var(--jet)',
+                                                color: 'var(--orange-yellow-crayola)',
+                                                padding: '12px',
+                                                borderRadius: '10px',
+                                                fontSize: '20px',
+                                                display: 'flex',
+                                                boxShadow: 'var(--shadow-3)'
+                                            }} onClick={(e) => e.stopPropagation()}>
+                                                <ion-icon name="phone-portrait-outline"></ion-icon>
+                                            </a>
+                                        )}
                                         <a href={project.github} target="_blank" rel="noreferrer" title="View Code" style={{
                                             background: 'var(--jet)',
                                             color: 'var(--orange-yellow-crayola)',
-                                            padding: '15px',
-                                            borderRadius: '12px',
-                                            fontSize: '24px',
+                                            padding: '12px',
+                                            borderRadius: '10px',
+                                            fontSize: '20px',
                                             display: 'flex',
                                             boxShadow: 'var(--shadow-3)'
                                         }} onClick={(e) => e.stopPropagation()}>

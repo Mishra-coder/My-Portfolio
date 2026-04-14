@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Resume = () => {
-    const resumePdf = "/resume.pdf";
+    const resumePdf = "/DEVENDRA_RESUME.pdf";
 
     return (
         <article className="resume active" data-page="resume">
