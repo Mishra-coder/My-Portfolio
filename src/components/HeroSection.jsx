@@ -109,7 +109,7 @@ const HeroSection = ({ onOpenSection }) => {
                     {/* Section Header Bar: "Projects" */}
                     <div className="ref-projects-header-bar">
                         <div className="ref-projects-title-box">
-                            <span className="ref-section-mini-badge">FEATURED PORTFOLIO</span>
+                            <span className="ref-section-mini-badge">Featured portfolio</span>
                             <h2 className="ref-projects-bar-title">Projects</h2>
                         </div>
                         <button
@@ -164,7 +164,7 @@ const HeroSection = ({ onOpenSection }) => {
             {/* 4. FOCUS / PHILOSOPHY STATEMENT */}
             <section className="ref-focus-section">
                 <div className="ref-focus-inner">
-                    <span className="ref-section-mini-badge">FOCUS</span>
+                    <span className="ref-section-mini-badge">Focus</span>
                     <h2 className="ref-focus-statement">
                         my focus is on blending <em>clear strategy</em>, <strong>scalable architecture</strong>, and <strong>intelligent AI</strong> to craft experiences that solve real problems.
                     </h2>
@@ -184,7 +184,7 @@ const HeroSection = ({ onOpenSection }) => {
             {/* 5. PROCESS SECTION ("Here's how it works") */}
             <section className="ref-process-section">
                 <div className="ref-process-inner">
-                    <span className="ref-section-mini-badge">MY METHODOLOGY</span>
+                    <span className="ref-section-mini-badge">My methodology</span>
                     <h2 className="ref-process-heading">Here's how it works</h2>
 
                     <div className="ref-process-cards">

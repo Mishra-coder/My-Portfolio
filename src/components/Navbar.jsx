@@ -71,9 +71,9 @@ const Navbar = ({ onOpenSection }) => {
 
                     {/* Center: Laurel Wreath Award Badge with REAL credentials */}
                     <div className="ref-award-badge" title="Hacktoberfest 2024 Global Contributor & NST Pune Scholar">
-                        <div className="ref-laurel-icon-wrapper">
+                        <div className="ref-laurel-icon-wrapper" aria-hidden="true">
                             <LaurelWreath size={22} className="ref-laurel-svg" />
-                            <span className="ref-laurel-center-text">GLOBAL<br />CONTRIBUTOR</span>
+                            <span className="ref-laurel-center-text">Global<br />Contributor</span>
                         </div>
                         <span className="ref-award-title">Hacktoberfest '24 • NST Pune</span>
                     </div>
