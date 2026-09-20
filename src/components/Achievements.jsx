@@ -36,7 +36,7 @@ const Achievements = () => {
             highlight: "Peer Mentor & Speaker",
             tag: "Certification",
             verifyLink: "https://www.coursera.org/account/accomplishments/verify/4YXZL62PUW4W?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=pdf_header_button&utm_product=course",
-            accentColor: "#6366f1"
+            accentColor: "#587D34"
         },
         {
             title: "E-Sports Coordinator & Organizer",
@@ -71,7 +71,7 @@ const Achievements = () => {
                     </div>
                 </div>
                 <div className="highlight-item">
-                    <Award size={20} color="#38bdf8" />
+                    <Award size={20} color="#84cc16" />
                     <div>
                         <strong>Workshop Speaker</strong>
                         <p>Mentored DSA & Web Dev Sessions</p>

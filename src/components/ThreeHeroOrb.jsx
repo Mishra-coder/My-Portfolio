@@ -152,7 +152,7 @@ const ThreeHeroOrb = ({ size = 260 }) => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'grab',
-                filter: 'drop-shadow(0 10px 25px rgba(99, 102, 241, 0.25))'
+                filter: 'drop-shadow(0 10px 25px rgba(88, 125, 52, 0.25))'
             }}
             title="Interactive 3D Core"
         />

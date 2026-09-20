@@ -1,37 +1,37 @@
 :root {
   /* --- surfaces (deep indigo instead of flat black) --- */
-  --smoky-black: hsl(233, 30%, 6%);
+  --smoky-black: #fafbf7;
   /* --- accents --- */
-  --accent: hsl(256, 90%, 76%);
-  --accent-soft: hsl(256, 90%, 82%);
-  --accent-2: hsl(187, 78%, 62%);
-  --accent-glow: hsla(256, 90%, 70%, 0.35);
+  --accent: #587D34;
+  --accent-soft: #587D34;
+  --accent-2: #587D34;
+  --accent-glow: rgba(88, 125, 52, 0.25);
   /* legacy names kept so every existing style picks up the new palette */
   /* --- text --- */
-  --white-1: hsl(230, 45%, 98%);
-  --white-2: hsl(228, 30%, 93%);
-  --light-gray: hsl(228, 18%, 76%);
-  --light-gray-70: hsla(228, 18%, 76%, 0.72);
+  --white-1: #0f172a;
+  --white-2: #334155;
+  --light-gray: #64748b;
+  --light-gray-70: #64748b;
   /* --- gradients --- */
-  --text-gradient-yellow: linear-gradient(90deg, hsl(256, 90%, 76%) 0%, hsl(300, 72%, 72%) 45%, hsl(187, 78%, 64%) 100%);
+  --text-gradient-yellow: linear-gradient(90deg, #587D34 0%, #65a30d 100%);
   /* --- type --- */
   --ff-poppins: 'Plus Jakarta Sans', 'Poppins', system-ui, sans-serif;
   --ff-display: 'Sora', 'Plus Jakarta Sans', sans-serif;
-  --fs-1: 26px;
-  --fs-2: 19px;
-  --fs-3: 17px;
-  --fs-4: 16px;
-  --fs-5: 15px;
-  --fs-6: 14px;
-  --fs-7: 13px;
-  --fs-8: 12px;
+  --fs-1: var(--t-xl);
+  --fs-2: var(--t-lg);
+  --fs-3: var(--t-lg);
+  --fs-4: var(--t-md);
+  --fs-5: var(--t-md);
+  --fs-6: var(--t-sm);
+  --fs-7: var(--t-sm);
+  --fs-8: var(--t-xs);
   --fw-500: 500;
   --fw-600: 600;
   /* --- elevation (softer, tinted — not muddy black) --- */
-  --shadow-1: 0 6px 20px hsla(233, 50%, 3%, 0.45);
-  --shadow-2: 0 14px 34px hsla(233, 50%, 3%, 0.45);
-  --shadow-3: 0 18px 44px hsla(233, 50%, 3%, 0.5);
-  --shadow-4: 0 26px 60px hsla(233, 50%, 3%, 0.45);
+  --shadow-1: 0 6px 20px rgba(15, 23, 42, 0.08);
+  --shadow-2: 0 14px 34px rgba(15, 23, 42, 0.08);
+  --shadow-3: 0 18px 44px rgba(15, 23, 42, 0.08);
+  --shadow-4: 0 26px 60px rgba(15, 23, 42, 0.08);
   --transition-1: 0.28s cubic-bezier(0.4, 0.14, 0.3, 1);
 }
 

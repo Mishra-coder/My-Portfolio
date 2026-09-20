@@ -13,8 +13,8 @@ const Skills = () => {
         {
             category: "Front-End Engineering",
             icon: Layout,
-            accent: "linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(99, 102, 241, 0.05))",
-            color: "#38bdf8",
+            accent: "linear-gradient(135deg, rgba(132, 204, 22, 0.12), rgba(88, 125, 52, 0.04))",
+            color: "#84cc16",
             description: "Crafting fluid, accessible, and reactive user interfaces with modern component architectures and micro-interactions.",
             skills: [
                 { name: "React / Next.js", level: 92 },
@@ -27,8 +27,8 @@ const Skills = () => {
         {
             category: "Back-End & Database Architecture",
             icon: Database,
-            accent: "linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(168, 85, 247, 0.05))",
-            color: "#6366f1",
+            accent: "linear-gradient(135deg, rgba(88, 125, 52, 0.12), rgba(101, 163, 13, 0.04))",
+            color: "#587D34",
             description: "Designing reliable RESTful APIs, relational & document data models, and scalable asynchronous backend services.",
             skills: [
                 { name: "Node.js & Express.js", level: 88 },
@@ -41,8 +41,8 @@ const Skills = () => {
         {
             category: "AI, Machine Learning & Core CS",
             icon: BrainCircuit,
-            accent: "linear-gradient(135deg, rgba(168, 85, 247, 0.14), rgba(236, 72, 153, 0.05))",
-            color: "#a855f7",
+            accent: "linear-gradient(135deg, rgba(101, 163, 13, 0.12), rgba(88, 125, 52, 0.04))",
+            color: "#65a30d",
             description: "Rigorous coursework at NST Pune in Artificial Intelligence, Machine Learning algorithms, and Data Structures in Python.",
             skills: [
                 { name: "Python Core & Scripting", level: 90 },
@@ -55,7 +55,7 @@ const Skills = () => {
         {
             category: "Mobile & Developer Tooling",
             icon: Smartphone,
-            accent: "linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(56, 189, 248, 0.05))",
+            accent: "linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(132, 204, 22, 0.04))",
             color: "#10b981",
             description: "Building production mobile applications with React Native and using modern developer tooling for continuous collaboration.",
             skills: [
@@ -81,15 +81,15 @@ const Skills = () => {
             {/* Quick Core Strengths Banner */}
             <div className="skills-overview-strip tilt-3d">
                 <div className="overview-item">
-                    <CheckCircle2 size={18} color="#38bdf8" />
+                    <CheckCircle2 size={18} color="#84cc16" />
                     <span>Full-Stack Development</span>
                 </div>
                 <div className="overview-item">
-                    <CheckCircle2 size={18} color="#6366f1" />
+                    <CheckCircle2 size={18} color="#587D34" />
                     <span>Mobile Engineering (React Native)</span>
                 </div>
                 <div className="overview-item">
-                    <CheckCircle2 size={18} color="#a855f7" />
+                    <CheckCircle2 size={18} color="#65a30d" />
                     <span>AI & ML Specialization</span>
                 </div>
                 <div className="overview-item">
@@ -133,7 +133,7 @@ const Skills = () => {
                                                 className="progress-bar-fill"
                                                 style={{
                                                     width: `${skill.level}%`,
-                                                    background: `linear-gradient(90deg, ${group.color}, #a855f7)`
+                                                    background: `linear-gradient(90deg, ${group.color}, #65a30d)`
                                                 }}
                                             />
                                         </div>

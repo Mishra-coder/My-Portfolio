@@ -72,7 +72,7 @@ const Contact = () => {
             icon: Mail,
             actionText: "Send Mail",
             link: "mailto:devendramishra495@gmail.com",
-            accent: "#38bdf8"
+            accent: "#84cc16"
         },
         {
             title: "LinkedIn",
@@ -80,7 +80,7 @@ const Contact = () => {
             icon: Linkedin,
             actionText: "Connect",
             link: "https://www.linkedin.com/in/devendra-mishra-b9613b339/",
-            accent: "#6366f1"
+            accent: "#587D34"
         },
         {
             title: "GitHub",
@@ -88,7 +88,7 @@ const Contact = () => {
             icon: Github,
             actionText: "Explore Repos",
             link: "https://github.com/Mishra-coder",
-            accent: "#a855f7"
+            accent: "#65a30d"
         },
         {
             title: "Location",
