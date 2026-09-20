@@ -2922,7 +2922,8 @@ body::after {
   display: inline-block;
   font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
-  font-size: clamp(4.5rem, 13vw, 13rem);
+  font-size: clamp(2.4rem, 10.5vw, 9.5rem);
+  max-width: 100%;
   font-weight: 400;
   color: #0f172a;
   letter-spacing: -0.03em;
