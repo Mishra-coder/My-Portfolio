@@ -1,159 +1,262 @@
+import React, { useState, useMemo } from 'react';
 import bgRemoverImg from '../assets/bg_remover.png';
 import successMantraImg from '../assets/success_mantra_new.png';
 import aromaLuxeImg from '../assets/aroma_luxe_web.png';
 import zappifyMockupImg from '../assets/zappify_mockup.jpg';
 import akoinWebImg from '../assets/akoin_web.png';
 import karoPitchImg from '../assets/karo_pitch_web.png';
+import {
+    ExternalLink,
+    Search,
+    Sparkles,
+    Eye,
+    Layers,
+    Smartphone,
+    Globe
+} from 'lucide-react';
+import { Github } from './Icons';
+
 
 const Portfolio = () => {
+    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [searchQuery, setSearchQuery] = useState('');
+
     const projects = [
         {
-            title: "Success Mantra Institute",
-            category: "Full Stack Development",
+            title: "Success Magis",
+            category: "Full Stack",
+            subtitle: "Coaching & Student Learning Management System",
+            description: "Scalable educational platform with authentication, class scheduling, interactive resources, and administrative control panels.",
             image: successMantraImg,
             link: "https://success-mantra-dm.vercel.app/",
-            github: "https://github.com/Mishra-coder/Coaching_Website"
+            github: "https://github.com/Mishra-coder/Coaching_Website",
+            tags: ["React", "Node.js", "Express", "MongoDB", "Auth"],
+            featured: true
         },
         {
-            title: "Zappify - Premium Footwear",
-            category: "Mobile Development (React Native)",
+            title: "Zappify - Footwear Store",
+            category: "Mobile",
+            subtitle: "Premium Mobile E-Commerce Experience",
+            description: "Fluid cross-platform mobile shopping experience with cart management, animated transitions, and responsive layout.",
             image: zappifyMockupImg,
             link: "https://zappify-sepia.vercel.app/",
             github: "https://github.com/Mishra-coder/Zappify",
-            preview: "https://shorturl.at/17h2f"
+            preview: "https://shorturl.at/17h2f",
+            tags: ["React Native", "Expo", "TypeScript", "UI/UX"],
+            featured: true
         },
         {
             title: "Aroma Luxe",
-            category: "Mobile Development (React Native)",
+            category: "Mobile",
+            subtitle: "Luxury Fragrance Mobile Application",
+            description: "High-end product discovery app featuring sleek dark aesthetic, filtered fragrance catalog, and fluid product sheets.",
             image: aromaLuxeImg,
             link: "https://perfume-app-h3ct.vercel.app/",
-            github: "https://github.com/Mishra-coder/Perfume_APP"
+            github: "https://github.com/Mishra-coder/Perfume_APP",
+            tags: ["React Native", "Tailwind", "Mobile UX"],
+            featured: false
         },
         {
             title: "Institute of Digital Risk (IDR)",
-            category: "Frontend Development",
+            category: "Frontend",
+            subtitle: "Corporate Cybersecurity & Digital Risk Platform",
+            description: "Clean institutional interface designed for risk mitigation services, professional programs, and modern corporate aesthetics.",
             image: akoinWebImg,
             link: "https://akoin-seven.vercel.app/",
-            github: "https://github.com/Mishra-coder/AKOIN_"
+            github: "https://github.com/Mishra-coder/AKOIN_",
+            tags: ["React", "Modern CSS", "Responsive"],
+            featured: false
         },
         {
-            title: "Background Remover",
+            title: "AI Background Remover",
             category: "Frontend",
+            subtitle: "Instant Image Processing Tool",
+            description: "Fast in-browser utility for isolating foreground subjects with zero latency and high fidelity exports.",
             image: bgRemoverImg,
             link: "https://bg-remover-dm.vercel.app/",
-            github: "https://github.com/Mishra-coder/BG.Remover"
+            github: "https://github.com/Mishra-coder/BG.Remover",
+            tags: ["React", "Image Processing API", "Vite"],
+            featured: false
         },
         {
-            title: "Karo Pitch - Startup Platform",
-            category: "Frontend Development",
+            title: "Karo Pitch - Startup Hub",
+            category: "Frontend",
+            subtitle: "Founder & Investor Pitch Platform",
+            description: "Pitch deck showcase and founder discovery application geared towards empowering early-stage startups.",
             image: karoPitchImg,
             link: "https://karo-pitch-liard.vercel.app/",
-            github: "https://github.com/Mishra-coder/Karo_Pitch"
+            github: "https://github.com/Mishra-coder/Karo_Pitch",
+            tags: ["React", "Tailwind CSS", "Startup Showcase"],
+            featured: false
         }
     ];
 
+    const categories = ['All', 'Full Stack', 'Mobile', 'Frontend'];
+
+    const filteredProjects = useMemo(() => {
+        return projects.filter((project) => {
+            const matchesCategory =
+                selectedCategory === 'All' || project.category === selectedCategory;
+            const matchesSearch =
+                project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                project.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                project.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+            return matchesCategory && matchesSearch;
+        });
+    }, [selectedCategory, searchQuery]);
+
     return (
-        <article className="portfolio active" data-page="portfolio">
-            <header>
-                <h2 className="h2 article-title">Projects</h2>
+        <article id="projects" className="portfolio active editorial-section-card" data-page="portfolio">
+            <header className="page-header">
+                <div className="badge-pill">
+                    <Sparkles size={14} />
+                    <span>Engineered with passion</span>
+                </div>
+                <h2 className="h2 article-title">Featured Projects</h2>
             </header>
 
-            <section className="projects">
-                <ul className="project-list">
-                    {projects.map((project, index) => (
-                        <li key={index} className="project-item active" data-filter-item data-category={project.category.toLowerCase()}
-                            onMouseEnter={(e) => {
-                                const iconBox = e.currentTarget.querySelector('.project-item-icon-box');
-                                if (iconBox) iconBox.style.opacity = '1';
-                                const img = e.currentTarget.querySelector('img');
-                                if (img) img.style.transform = 'scale(1.1)';
-                                const overlay = e.currentTarget.querySelector('.project-img-overlay');
-                                if (overlay) overlay.style.background = 'rgba(0,0,0,0.5)';
-                            }}
-                            onMouseLeave={(e) => {
-                                const iconBox = e.currentTarget.querySelector('.project-item-icon-box');
-                                if (iconBox) iconBox.style.opacity = '0';
-                                const img = e.currentTarget.querySelector('img');
-                                if (img) img.style.transform = 'scale(1)';
-                                const overlay = e.currentTarget.querySelector('.project-img-overlay');
-                                if (overlay) overlay.style.background = 'transparent';
-                            }}>
-                            <div className="project-link-wrapper" style={{ position: 'relative', cursor: 'pointer' }}>
-                                <figure className="project-img" style={{
-                                    height: 'auto',
-                                    aspectRatio: '16/10',
-                                    overflow: 'hidden',
-                                    position: 'relative',
-                                    borderRadius: '16px'
-                                }}>
-                                    <div className="project-img-overlay" style={{
-                                        position: 'absolute',
-                                        inset: 0,
-                                        background: 'transparent',
-                                        transition: 'var(--transition-1)',
-                                        zIndex: 1
-                                    }}></div>
-                                    <div className="project-item-icon-box" style={{
-                                        display: 'flex',
-                                        gap: '20px',
-                                        opacity: 0,
-                                        transition: 'all 0.3s ease',
-                                        position: 'absolute',
-                                        top: '50%',
-                                        left: '50%',
-                                        transform: 'translate(-50%, -50%)',
-                                        zIndex: 2,
-                                        width: 'max-content'
-                                    }}>
-                                        <a href={project.link} target="_blank" rel="noreferrer" title="Live Demo" style={{
-                                            background: 'var(--jet)',
-                                            color: 'var(--orange-yellow-crayola)',
-                                            padding: '12px',
-                                            borderRadius: '10px',
-                                            fontSize: '20px',
-                                            display: 'flex',
-                                            boxShadow: 'var(--shadow-3)'
-                                        }} onClick={(e) => e.stopPropagation()}>
-                                            <ion-icon name="eye-outline"></ion-icon>
-                                        </a>
-                                        {project.preview && (
-                                            <a href={project.preview} target="_blank" rel="noreferrer" title="App Preview" style={{
-                                                background: 'var(--jet)',
-                                                color: 'var(--orange-yellow-crayola)',
-                                                padding: '12px',
-                                                borderRadius: '10px',
-                                                fontSize: '20px',
-                                                display: 'flex',
-                                                boxShadow: 'var(--shadow-3)'
-                                            }} onClick={(e) => e.stopPropagation()}>
-                                                <ion-icon name="phone-portrait-outline"></ion-icon>
+            {/* Filter Controls & Search */}
+            <div className="portfolio-controls">
+                <div className="filter-pill-group">
+                    {categories.map((cat) => (
+                        <button
+                            key={cat}
+                            type="button"
+                            className={`filter-btn ${selectedCategory === cat ? 'active' : ''}`}
+                            onClick={() => setSelectedCategory(cat)}
+                        >
+                            {cat === 'All' && <Globe size={14} />}
+                            {cat === 'Full Stack' && <Layers size={14} />}
+                            {cat === 'Mobile' && <Smartphone size={14} />}
+                            {cat === 'Frontend' && <Sparkles size={14} />}
+                            <span>{cat}</span>
+                        </button>
+                    ))}
+                </div>
+
+                <div className="project-search-box">
+                    <Search size={16} className="search-icon" />
+                    <input
+                        type="text"
+                        placeholder="Search projects or tech..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="project-search-input"
+                    />
+                </div>
+            </div>
+
+            {/* Project Grid */}
+            <section className="projects-grid">
+                {filteredProjects.length > 0 ? (
+                    filteredProjects.map((project, index) => (
+                        <div key={index} className="project-card-3d tilt-3d">
+                            <div className="project-img-container">
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="project-img"
+                                    loading="lazy"
+                                />
+                                <div className="project-overlay">
+                                    <div className="overlay-actions">
+                                        {project.link && (
+                                            <a
+                                                href={project.link}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="overlay-btn primary"
+                                                title="View Live Site"
+                                            >
+                                                <ExternalLink size={18} />
+                                                <span>Live Demo</span>
                                             </a>
                                         )}
-                                        <a href={project.github} target="_blank" rel="noreferrer" title="View Code" style={{
-                                            background: 'var(--jet)',
-                                            color: 'var(--orange-yellow-crayola)',
-                                            padding: '12px',
-                                            borderRadius: '10px',
-                                            fontSize: '20px',
-                                            display: 'flex',
-                                            boxShadow: 'var(--shadow-3)'
-                                        }} onClick={(e) => e.stopPropagation()}>
-                                            <ion-icon name="logo-github"></ion-icon>
-                                        </a>
+                                        {project.github && (
+                                            <a
+                                                href={project.github}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="overlay-btn"
+                                                title="View Source Code"
+                                            >
+                                                <Github size={18} />
+                                                <span>Code</span>
+                                            </a>
+                                        )}
                                     </div>
-                                    <img src={project.image} alt={project.title} loading="lazy" style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        objectFit: 'cover',
-                                        transition: 'transform 0.5s ease'
-                                    }} />
-                                </figure>
-                                <h3 className="project-title" style={{ marginTop: '15px', fontSize: 'var(--fs-5)', color: 'var(--white-2)' }}>{project.title}</h3>
-                                <p className="project-category" style={{ color: 'var(--light-gray-70)', fontSize: 'var(--fs-8)' }}>{project.category}</p>
+                                </div>
+                                {project.featured && (
+                                    <span className="featured-badge">Featured</span>
+                                )}
                             </div>
-                        </li>
-                    ))}
-                </ul>
+
+                            <div className="project-info-body">
+                                <div className="project-cat-row">
+                                    <span className="project-category-pill">{project.category}</span>
+                                    {project.preview && (
+                                        <a
+                                            href={project.preview}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="mobile-preview-badge"
+                                            title="Open Mobile Demo Preview"
+                                        >
+                                            <Eye size={12} />
+                                            <span>App Preview</span>
+                                        </a>
+                                    )}
+                                </div>
+
+                                <h3 className="project-main-title">{project.title}</h3>
+                                <p className="project-subtitle-text">{project.subtitle}</p>
+                                <p className="project-desc-text">{project.description}</p>
+
+                                <div className="project-tag-row">
+                                    {project.tags.map((tag, tagIdx) => (
+                                        <span key={tagIdx} className="project-tech-tag">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                <div className="project-card-footer">
+                                    <a
+                                        href={project.link}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="card-action-link live"
+                                    >
+                                        <span>Visit Application</span>
+                                        <ExternalLink size={14} />
+                                    </a>
+                                    {project.github && (
+                                        <a
+                                            href={project.github}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="card-action-link github"
+                                        >
+                                            <Github size={15} />
+                                            <span>Repository</span>
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <div className="no-projects-found">
+                        <p>No projects match your filter or search query.</p>
+                        <button
+                            type="button"
+                            className="reset-filter-btn"
+                            onClick={() => { setSelectedCategory('All'); setSearchQuery(''); }}
+                        >
+                            Reset Filters
+                        </button>
+                    </div>
+                )}
             </section>
         </article>
     );

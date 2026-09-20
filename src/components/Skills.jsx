@@ -1,168 +1,159 @@
 import React from 'react';
+import {
+    Layout,
+    Database,
+    BrainCircuit,
+    Smartphone,
+    GitBranch,
+    Terminal,
+    Sparkles,
+    CheckCircle2
+} from 'lucide-react';
 
 const Skills = () => {
     const skillGroups = [
         {
-            category: "Front-End Development",
-            icon: "desktop-outline",
-            description: "Designing responsive and interactive user interfaces with modern frameworks like React and TypeScript.",
-            image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800",
+            category: "Front-End Engineering",
+            icon: Layout,
+            accent: "linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(99, 102, 241, 0.05))",
+            color: "#38bdf8",
+            description: "Crafting fluid, accessible, and reactive user interfaces with modern component architectures and micro-interactions.",
             skills: [
-                { name: "React / Next.js", level: 90, icon: "logo-react" },
-                { name: "JavaScript / TypeScript", level: 95, icon: "logo-javascript" },
-                { name: "Modern CSS / Tailwind", level: 90, icon: "color-palette-outline" }
-            ]
+                { name: "React / Next.js", level: 92 },
+                { name: "TypeScript / JavaScript (ES6+)", level: 94 },
+                { name: "Tailwind CSS & Modern CSS3", level: 90 },
+                { name: "State Management & React Query", level: 86 }
+            ],
+            badges: ["Component Design", "Responsive Layouts", "Performance Optimization", "Web Vitals"]
         },
         {
-            category: "Back-End & Databases",
-            icon: "server-outline",
-            description: "Building robust servers and managing scalable data architectures with Node.js and SQL/NoSQL.",
-            image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=800",
+            category: "Back-End & Database Architecture",
+            icon: Database,
+            accent: "linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(168, 85, 247, 0.05))",
+            color: "#6366f1",
+            description: "Designing reliable RESTful APIs, relational & document data models, and scalable asynchronous backend services.",
             skills: [
-                { name: "Node.js / Express", level: 88, icon: "logo-nodejs" },
-                { name: "Prisma / SQL / MongoDB", level: 92, icon: "server-outline" },
-                { name: "API Architecture", level: 90, icon: "git-network-outline" }
-            ]
+                { name: "Node.js & Express.js", level: 88 },
+                { name: "MongoDB & Mongoose", level: 90 },
+                { name: "MySQL / Relational DBs", level: 86 },
+                { name: "REST API Architecture & Auth", level: 91 }
+            ],
+            badges: ["JWT Authentication", "Schema Design", "CRUD Optimization", "Microservices Basics"]
         },
         {
-            category: "Specialized Tech",
-            icon: "hardware-chip-outline",
-            description: "Specialized in Artificial Intelligence, Machine Learning, and high-performance Mobile Apps with React Native.",
-            image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
+            category: "AI, Machine Learning & Core CS",
+            icon: BrainCircuit,
+            accent: "linear-gradient(135deg, rgba(168, 85, 247, 0.14), rgba(236, 72, 153, 0.05))",
+            color: "#a855f7",
+            description: "Rigorous coursework at NST Pune in Artificial Intelligence, Machine Learning algorithms, and Data Structures in Python.",
             skills: [
-                { name: "AI & Machine Learning", level: 80, icon: "medal-outline" },
-                { name: "React Native (iOS/Android)", level: 85, icon: "smartphone-outline" },
-                { name: "Python Scripting", level: 88, icon: "logo-python" }
-            ]
+                { name: "Python Core & Scripting", level: 90 },
+                { name: "Data Structures & Algorithms", level: 88 },
+                { name: "Applied Machine Learning", level: 82 },
+                { name: "Model Integration & Logic", level: 84 }
+            ],
+            badges: ["Algorithm Design", "Mathematical Modeling", "AI Workflows", "Problem Solving"]
+        },
+        {
+            category: "Mobile & Developer Tooling",
+            icon: Smartphone,
+            accent: "linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(56, 189, 248, 0.05))",
+            color: "#10b981",
+            description: "Building production mobile applications with React Native and using modern developer tooling for continuous collaboration.",
+            skills: [
+                { name: "React Native (iOS & Android)", level: 88 },
+                { name: "Git, GitHub & Version Control", level: 94 },
+                { name: "Vite, npm & Build Systems", level: 90 },
+                { name: "Postman & API Testing", level: 87 }
+            ],
+            badges: ["Mobile Navigation", "Open Source PRs", "CLI Tools", "Cross-Platform Deployment"]
         }
     ];
 
     return (
-        <article className="skills active" data-page="skills">
-            <header>
-                <h2 className="h2 article-title">My Technical Expertise</h2>
+        <article id="skills" className="skills active editorial-section-card" data-page="skills">
+            <header className="page-header">
+                <div className="badge-pill">
+                    <Sparkles size={14} />
+                    <span>Technical Proficiency</span>
+                </div>
+                <h2 className="h2 article-title">Skills & Capabilities</h2>
             </header>
 
-            <section className="skills-content">
-                <ul style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr',
-                    gap: '30px',
-                    padding: 0,
-                    listStyle: 'none'
-                }}>
-                    {skillGroups.map((group, index) => (
-                        <li key={index} className="achievement-card" style={{
-                            background: 'var(--bg-gradient-onyx)',
-                            borderRadius: '20px',
-                            border: '1px solid var(--jet)',
-                            overflow: 'hidden',
-                            display: 'flex',
-                            flexDirection: window.innerWidth < 992 ? 'column' : 'row',
-                            boxShadow: 'var(--shadow-3)',
-                            transition: 'var(--transition-1)'
-                        }}>
-                            <div className="achievement-img-box" style={{
-                                flex: '0 0 35%',
-                                minHeight: '250px',
-                                position: 'relative',
-                                overflow: 'hidden'
-                            }}>
-                                <img src={group.image} alt={group.category} style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    objectFit: 'cover',
-                                    transition: 'var(--transition-2)'
-                                }} />
-                                <div style={{
-                                    position: 'absolute',
-                                    top: '20px',
-                                    left: '20px',
-                                    background: 'rgba(0,0,0,0.6)',
-                                    backdropFilter: 'blur(5px)',
-                                    padding: '12px',
-                                    borderRadius: '12px',
-                                    color: 'var(--orange-yellow-crayola)',
-                                    fontSize: '28px',
-                                    display: 'flex'
-                                }}>
-                                    <ion-icon name={group.icon}></ion-icon>
-                                </div>
-                            </div>
-
-                            <div className="achievement-content" style={{
-                                padding: '35px',
-                                flex: '1',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                gap: '15px'
-                            }}>
-                                <div>
-                                    <h3 className="h3" style={{ marginBottom: '10px' }}>{group.category}</h3>
-                                    <p style={{
-                                        color: 'var(--light-gray-70)',
-                                        fontSize: 'var(--fs-7)',
-                                        lineHeight: '1.6',
-                                        marginBottom: '20px'
-                                    }}>{group.description}</p>
-                                </div>
-
-                                <div className="skills-items" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                                    {group.skills.map((skill, i) => (
-                                        <div key={i} style={{
-                                            background: 'var(--bg-gradient-jet)',
-                                            padding: '8px 15px',
-                                            borderRadius: '10px',
-                                            border: '1px solid var(--jet)',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '10px',
-                                            fontSize: 'var(--fs-8)',
-                                            color: 'var(--white-2)'
-                                        }}>
-                                            <div style={{ color: 'var(--orange-yellow-crayola)', fontSize: '18px', display: 'flex' }}>
-                                                <ion-icon name={skill.icon}></ion-icon>
-                                            </div>
-                                            <span>{skill.name}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            </section>
-
-            <section className="soft-skills" style={{ marginTop: '50px' }}>
-                <h3 className="h3" style={{ marginBottom: '25px' }}>Core Strengths</h3>
-                <div style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '12px'
-                }}>
-                    {["Problem Solving", "Collaboration", "Clean Architecture", "Critical Thinking", "Scalability", "Efficiency"].map((skill, i) => (
-                        <div key={i} style={{
-                            background: 'var(--bg-gradient-jet)',
-                            color: 'var(--white-2)',
-                            padding: '10px 22px',
-                            borderRadius: '12px',
-                            border: '1px solid var(--jet)',
-                            fontSize: 'var(--fs-7)',
-                            fontWeight: 'var(--fw-500)',
-                            boxShadow: 'var(--shadow-1)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            transition: 'var(--transition-1)',
-                            cursor: 'default'
-                        }} className="soft-skill-tag">
-                            <ion-icon name="checkmark-done-outline" style={{ color: 'var(--orange-yellow-crayola)' }}></ion-icon>
-                            {skill}
-                        </div>
-                    ))}
+            {/* Quick Core Strengths Banner */}
+            <div className="skills-overview-strip tilt-3d">
+                <div className="overview-item">
+                    <CheckCircle2 size={18} color="#38bdf8" />
+                    <span>Full-Stack Development</span>
                 </div>
-            </section>
+                <div className="overview-item">
+                    <CheckCircle2 size={18} color="#6366f1" />
+                    <span>Mobile Engineering (React Native)</span>
+                </div>
+                <div className="overview-item">
+                    <CheckCircle2 size={18} color="#a855f7" />
+                    <span>AI & ML Specialization</span>
+                </div>
+                <div className="overview-item">
+                    <CheckCircle2 size={18} color="#10b981" />
+                    <span>DSA Problem Solving</span>
+                </div>
+            </div>
+
+            {/* Categorized 3D Skill Cards */}
+            <div className="skill-groups-grid">
+                {skillGroups.map((group, idx) => {
+                    const IconComp = group.icon;
+                    return (
+                        <div
+                            key={idx}
+                            className="skill-group-card-3d tilt-3d"
+                            style={{ background: group.accent }}
+                        >
+                            <div className="skill-group-header">
+                                <div
+                                    className="skill-group-icon"
+                                    style={{ color: group.color, borderColor: `${group.color}30` }}
+                                >
+                                    <IconComp size={22} />
+                                </div>
+                                <div>
+                                    <h3 className="skill-group-title">{group.category}</h3>
+                                    <p className="skill-group-desc">{group.description}</p>
+                                </div>
+                            </div>
+
+                            <div className="skills-progress-list">
+                                {group.skills.map((skill, sIdx) => (
+                                    <div key={sIdx} className="skill-progress-item">
+                                        <div className="skill-meta-row">
+                                            <span className="skill-name">{skill.name}</span>
+                                            <span className="skill-pct">{skill.level}%</span>
+                                        </div>
+                                        <div className="progress-bar-bg">
+                                            <div
+                                                className="progress-bar-fill"
+                                                style={{
+                                                    width: `${skill.level}%`,
+                                                    background: `linear-gradient(90deg, ${group.color}, #a855f7)`
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="skill-badges-footer">
+                                {group.badges.map((badge, bIdx) => (
+                                    <span key={bIdx} className="competency-badge">
+                                        {badge}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
         </article>
     );
 };

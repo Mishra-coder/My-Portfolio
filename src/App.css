@@ -1,46 +1,69 @@
+/* ============================================================
+   DESIGN TOKENS  —  "Aurora Night" theme
+   Soft deep-indigo surfaces + violet→aqua accent.
+   Low-glare on the eyes, high contrast where it matters.
+   ============================================================ */
 :root {
-  --bg-gradient-onyx: linear-gradient(to bottom right, hsl(240, 1%, 25%) 3%, hsl(0, 0%, 19%) 97%);
-  --bg-gradient-jet: linear-gradient(to bottom right, hsla(240, 1%, 18%, 0.251) 0%, hsla(240, 2%, 11%, 0) 100%), hsl(240, 2%, 13%);
-  --bg-gradient-yellow-1: linear-gradient(to bottom right, hsl(45, 100%, 71%) 0%, hsla(36, 100%, 69%, 0) 50%);
-  --bg-gradient-yellow-2: linear-gradient(135deg, hsla(45, 100%, 71%, 0.251) 0%, hsla(35, 100%, 68%, 0) 59.86%), hsl(240, 2%, 13%);
-  --border-gradient-onyx: linear-gradient(to bottom right, hsl(0, 0%, 25%) 0%, hsla(0, 0%, 25%, 0) 50%);
-  --text-gradient-yellow: linear-gradient(to right, hsl(45, 100%, 72%), hsl(35, 100%, 68%));
+  /* --- surfaces (deep indigo instead of flat black) --- */
+  --smoky-black: hsl(233, 30%, 6%);
+  --eerie-black-2: hsl(233, 24%, 9.5%);
+  --eerie-black-1: hsl(233, 22%, 11.5%);
+  --onyx: hsl(233, 18%, 16%);
+  --jet: hsl(233, 16%, 21%);
 
-  --jet: hsl(240, 2%, 18%);
-  --onyx: hsl(240, 1%, 17%);
-  --eerie-black-1: hsl(240, 2%, 13%);
-  --eerie-black-2: hsl(240, 2%, 12%);
-  --smoky-black: hsl(0, 0%, 7%);
-  --white-1: hsl(0, 0%, 100%);
-  --white-2: hsl(0, 0%, 98%);
-  --orange-yellow-crayola: hsl(45, 100%, 72%);
-  --vegas-gold: hsl(45, 100%, 58%);
-  --light-gray: hsl(0, 0%, 84%);
-  --light-gray-70: hsla(0, 0%, 84%, 0.7);
-  --bittersweet-shimmer: hsl(0, 43%, 51%);
+  /* --- accents --- */
+  --accent: hsl(256, 90%, 76%);
+  --accent-soft: hsl(256, 90%, 82%);
+  --accent-2: hsl(187, 78%, 62%);
+  --accent-3: hsl(320, 75%, 72%);
+  --accent-glow: hsla(256, 90%, 70%, 0.35);
 
-  --ff-poppins: 'Dancing Script', cursive;
-  --fs-1: 24px;
-  --fs-2: 18px;
+  /* legacy names kept so every existing style picks up the new palette */
+  --orange-yellow-crayola: var(--accent);
+  --vegas-gold: var(--accent-2);
+  --bittersweet-shimmer: hsl(350, 72%, 64%);
+
+  /* --- text --- */
+  --white-1: hsl(230, 45%, 98%);
+  --white-2: hsl(228, 30%, 93%);
+  --light-gray: hsl(228, 18%, 76%);
+  --light-gray-70: hsla(228, 18%, 76%, 0.72);
+
+  /* --- gradients --- */
+  --bg-gradient-onyx: linear-gradient(145deg, hsl(233, 20%, 15%) 0%, hsl(233, 24%, 10%) 100%);
+  --bg-gradient-jet: linear-gradient(145deg, hsla(233, 22%, 22%, 0.45) 0%, hsla(233, 24%, 10%, 0) 100%), hsl(233, 22%, 11.5%);
+  --bg-gradient-yellow-1: linear-gradient(135deg, hsl(256, 90%, 70%) 0%, hsl(300, 72%, 68%) 100%);
+  --bg-gradient-yellow-2: linear-gradient(135deg, hsla(256, 90%, 72%, 0.22) 0%, hsla(187, 78%, 62%, 0) 60%), hsl(233, 22%, 11.5%);
+  --border-gradient-onyx: linear-gradient(145deg, hsl(233, 20%, 28%) 0%, hsla(233, 20%, 28%, 0) 55%);
+  --text-gradient-yellow: linear-gradient(90deg, hsl(256, 90%, 76%) 0%, hsl(300, 72%, 72%) 45%, hsl(187, 78%, 64%) 100%);
+
+  /* --- type --- */
+  --ff-poppins: 'Plus Jakarta Sans', 'Poppins', system-ui, sans-serif;
+  --ff-display: 'Sora', 'Plus Jakarta Sans', sans-serif;
+  --ff-script: 'Dancing Script', cursive;
+  --fs-1: 26px;
+  --fs-2: 19px;
   --fs-3: 17px;
   --fs-4: 16px;
   --fs-5: 15px;
   --fs-6: 14px;
   --fs-7: 13px;
-  --fs-8: 11px;
+  --fs-8: 12px;
   --fw-300: 300;
   --fw-400: 400;
   --fw-500: 500;
   --fw-600: 600;
 
-  --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.25);
-  --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.25);
-  --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.25);
-  --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.15);
-  --shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.25);
+  /* --- elevation (softer, tinted — not muddy black) --- */
+  --shadow-1: 0 6px 20px hsla(233, 50%, 3%, 0.45);
+  --shadow-2: 0 14px 34px hsla(233, 50%, 3%, 0.45);
+  --shadow-3: 0 18px 44px hsla(233, 50%, 3%, 0.5);
+  --shadow-4: 0 26px 60px hsla(233, 50%, 3%, 0.45);
+  --shadow-5: 0 28px 80px hsla(233, 50%, 3%, 0.5);
+  --shadow-glow: 0 0 0 1px hsla(256, 90%, 76%, 0.35), 0 12px 40px var(--accent-glow);
 
-  --transition-1: 0.25s ease;
-  --transition-2: 0.5s ease-in-out;
+  --transition-1: 0.28s cubic-bezier(0.4, 0.14, 0.3, 1);
+  --transition-2: 0.55s cubic-bezier(0.4, 0.14, 0.3, 1);
 }
 
 *,

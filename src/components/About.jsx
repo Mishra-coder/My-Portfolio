@@ -1,235 +1,282 @@
 import React from 'react';
-import profileReal from '../assets/profile_real.png';
+import ThreeHeroOrb from './ThreeHeroOrb';
 import leetcodeIcon from '../assets/leetcode_icon.png';
 import mobileDevIcon from '../assets/mobile_dev_icon_new.png';
 import aiIcon from '../assets/ai_icon_v2.png';
+import {
+    BrainCircuit,
+    Layers,
+    Smartphone,
+    GitPullRequest,
+    GraduationCap,
+    Award,
+    Code2,
+    Database,
+    Sparkles,
+    Flame,
+    ArrowUpRight,
+    Terminal,
+    Cpu
+} from 'lucide-react';
 
 const About = () => {
     const services = [
         {
-            title: "Artificial Intelligence",
-            description: "B.Tech in AI & ML focus. specializing in building intelligent systems and applied algorithms.",
-            image: aiIcon
+            title: "Artificial Intelligence & ML",
+            description: "Developing intelligent solutions, fine-tuned models, and applied data algorithms with Python and PyTorch/TensorFlow.",
+            image: aiIcon,
+            tag: "AI & ML",
+            accent: "linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.05))"
         },
         {
-            title: "Full Stack Development",
-            description: "Highly active full stack developer with sharp focus on scalable system architectures.",
-            icon: "code-working-outline"
+            title: "Full-Stack Web Engineering",
+            description: "Architecting high-concurrency systems, RESTful microservices, and reactive SPAs using React, Node.js, and modern databases.",
+            lucideIcon: Layers,
+            tag: "Web Systems",
+            accent: "linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(99, 102, 241, 0.05))"
         },
         {
             title: "Mobile App Development",
-            description: "Crafting fluid cross-platform experiences using React Native and TypeScript.",
-            image: mobileDevIcon
+            description: "Crafting fluid, native-grade cross-platform mobile apps for iOS and Android with React Native and modern state management.",
+            image: mobileDevIcon,
+            tag: "iOS & Android",
+            accent: "linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.05))"
         },
         {
-            title: "Open Source Contributor",
-            description: "Dedicated to the community with consistent contributions and open-source engagement over the last year.",
-            icon: "git-branch-outline"
+            title: "Open Source & Architecture",
+            description: "Delivering production-quality pull requests to global repositories and designing robust, clean modular codebases.",
+            lucideIcon: GitPullRequest,
+            tag: "Open Source",
+            accent: "linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(56, 189, 248, 0.05))"
         }
     ];
 
     const techStack = [
-        { name: "React", icon: "logo-react" },
-        { name: "Node.js", icon: "logo-nodejs" },
-        { name: "Python", icon: "logo-python" },
-        { name: "JavaScript", icon: "logo-javascript" },
-        { name: "MySQL", icon: "server-outline" },
-        { name: "MongoDB", icon: "leaf-outline" },
-        { name: "GitHub", icon: "logo-github" },
-        { name: "TypeScript", icon: "code-slash-outline" }
+        { name: "React", category: "Frontend", color: "#61dafb" },
+        { name: "TypeScript", category: "Language", color: "#3178c6" },
+        { name: "JavaScript", category: "Language", color: "#f7df1e" },
+        { name: "Node.js", category: "Backend", color: "#68a063" },
+        { name: "Python", category: "AI / Core", color: "#4584b6" },
+        { name: "React Native", category: "Mobile", color: "#61dafb" },
+        { name: "Tailwind CSS", category: "Frontend", color: "#38bdf8" },
+        { name: "MongoDB", category: "Database", color: "#47a248" },
+        { name: "MySQL / SQL", category: "Database", color: "#00758f" },
+        { name: "Git & GitHub", category: "DevOps", color: "#f05032" },
+        { name: "Next.js", category: "Framework", color: "#ffffff" },
+        { name: "Vite", category: "Tooling", color: "#bd34fe" }
     ];
 
     return (
-        <article className="about active" data-page="about">
-            <header>
+        <article id="about" className="about active editorial-section-card" data-page="about">
+            <header className="page-header">
+                <div className="badge-pill">
+                    <Sparkles size={14} />
+                    <span>Welcome to my digital space</span>
+                </div>
                 <h2 className="h2 article-title">About Me</h2>
             </header>
 
-            <section className="about-intro" style={{
-                background: 'var(--bg-gradient-onyx)',
-                padding: '35px',
-                borderRadius: '25px',
-                border: '1px solid var(--jet)',
-                marginBottom: '40px',
-                boxShadow: 'var(--shadow-2)'
-            }}>
-                <div className="about-text" style={{ margin: 0 }}>
-                    <p style={{ marginBottom: '15px', color: 'var(--white-2)', fontSize: '1.05rem', lineHeight: '1.7' }}>
-                        I am a passionate Full Stack & AI/ML Developer pursuing my B.Tech in Computer Science at the <strong>Newton School of Technology, Pune</strong>.
-                        With a deep focus on building intelligent, user-centric applications, I specialize in the <strong>full stack, React Native, and applied AI algorithms</strong>.
+            {/* Hero Bento Introduction with 3D Cyber Orb */}
+            <section className="about-hero-card tilt-3d">
+                <div className="hero-text-content">
+                    <div className="hero-greeting">
+                        <span className="greeting-line">Hello, I'm Devendra Mishra</span>
+                        <h3 className="hero-tagline">
+                            Building <span className="gradient-text">Intelligent Applications</span> & Scalable Architecture
+                        </h3>
+                    </div>
+
+                    <p className="hero-description">
+                        I am a Computer Science & AI undergraduate at <strong>Newton School of Technology, Pune</strong>.
+                        Passionate about bridging the gap between algorithmic intelligence and elegant user experiences,
+                        I specialize in building full-stack platforms, high-performance mobile applications, and applied AI systems.
                     </p>
-                    <p style={{ color: 'var(--light-gray)', lineHeight: '1.7', fontSize: 'var(--fs-7)' }}>
-                        I thrive at the intersection of complex data logic and seamless user experiences. From leading technical workshops to contributing
-                        to global open-source projects, I am committed to solving real-world challenges through scalable code and innovative system design.
-                    </p>
+
+                    <div className="hero-highlights">
+                        <span className="highlight-badge">
+                            <Terminal size={14} /> Full Stack Architecture
+                        </span>
+                        <span className="highlight-badge">
+                            <BrainCircuit size={14} /> AI & Applied ML
+                        </span>
+                        <span className="highlight-badge">
+                            <Smartphone size={14} /> React Native
+                        </span>
+                    </div>
+                </div>
+
+                <div className="hero-3d-visual">
+                    <ThreeHeroOrb size={240} />
+                    <span className="orb-caption">Interactive 3D Core • Drag to Rotate</span>
                 </div>
             </section>
 
-            <section className="about-stats" style={{ marginBottom: '30px' }}>
-                <div className="stat-card">
-                    <div style={{
-                        background: 'var(--bg-gradient-jet)',
-                        width: '60px', height: '60px',
-                        display: 'flex', justifyContent: 'center', alignItems: 'center',
-                        borderRadius: '12px', fontSize: '32px', color: 'var(--orange-yellow-crayola)'
-                    }}>
-                        <ion-icon name="trending-up-outline"></ion-icon>
+            {/* Metrics & Proof Bento */}
+            <section className="metrics-grid">
+                <div className="metric-card tilt-3d">
+                    <div className="metric-icon-box cyan">
+                        <Flame size={24} />
                     </div>
-                    <div>
-                        <h4 className="h4" style={{ margin: '0 0 5px 0' }}>Consistent GitHub Activity</h4>
-                        <p style={{ margin: 0, fontSize: 'var(--fs-7)', color: 'var(--light-gray-70)' }}>
-                            Proof of dedication and a relentless drive for building.
-                        </p>
+                    <div className="metric-info">
+                        <span className="metric-number">Continuous</span>
+                        <h4 className="metric-title">GitHub Activity</h4>
+                        <p className="metric-desc">Regular commits & active repository contributions.</p>
+                    </div>
+                </div>
+
+                <div className="metric-card tilt-3d">
+                    <div className="metric-icon-box violet">
+                        <Award size={24} />
+                    </div>
+                    <div className="metric-info">
+                        <span className="metric-number">100%</span>
+                        <h4 className="metric-title">PR Acceptance</h4>
+                        <p className="metric-desc">Hacktoberfest contributor to global projects.</p>
+                    </div>
+                </div>
+
+                <div className="metric-card tilt-3d">
+                    <div className="metric-icon-box emerald">
+                        <Code2 size={24} />
+                    </div>
+                    <div className="metric-info">
+                        <span className="metric-number">DSA & Systems</span>
+                        <h4 className="metric-title">Problem Solving</h4>
+                        <p className="metric-desc">Active algorithmic training on LeetCode.</p>
                     </div>
                 </div>
             </section>
 
-            <section className="about-expertise" style={{ marginBottom: '45px' }}>
-                <p style={{ color: 'var(--light-gray)', lineHeight: '1.6', fontSize: 'var(--fs-6)' }}>
-                    My expertise lies in the <strong>full stack</strong> and <strong>React Native</strong>. Whether it's training a model or building a full-stack coaching platform,
-                    I value clean code, high performance, and the transformative power of technology.
-                </p>
-            </section>
-
-            <section className="timeline">
-                <div className="title-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '30px' }}>
-                    <div className="icon-box" style={{
-                        background: 'var(--bg-gradient-jet)',
-                        color: 'var(--orange-yellow-crayola)',
-                        width: '44px', height: '44px',
-                        display: 'flex', justifyContent: 'center', alignItems: 'center',
-                        borderRadius: '10px', fontSize: '22px'
-                    }}>
-                        <ion-icon name="book-outline"></ion-icon>
-                    </div>
-                    <h3 className="h3">Education</h3>
+            {/* Services / What I Do */}
+            <section className="section-block">
+                <div className="section-header-row">
+                    <h3 className="h3 section-title">What I Do</h3>
+                    <span className="section-subtitle">Core Pillars of Expertise</span>
                 </div>
 
-                <ol className="timeline-list" style={{ marginLeft: '15px' }}>
-                    <li className="timeline-item" style={{ position: 'relative', paddingBottom: '30px', paddingLeft: '35px', borderLeft: '1px solid var(--jet)' }}>
-                        <div style={{
-                            position: 'absolute', left: '-6px', top: '0',
-                            width: '12px', height: '12px',
-                            background: 'var(--orange-yellow-crayola)',
-                            borderRadius: '50%', boxShadow: '0 0 0 4px var(--jet)'
-                        }}></div>
-                        <h4 className="h4 timeline-item-title">B.Tech in Computer Science (AI & ML)</h4>
-                        <span style={{ color: 'var(--vegas-gold)', fontSize: 'var(--fs-8)', fontWeight: 'var(--fw-500)' }}>2024 — 2028</span>
-                        <p className="timeline-text" style={{ color: 'var(--light-gray-70)', fontSize: 'var(--fs-7)', marginTop: '10px', lineHeight: '1.6' }}>
-                            Newton School of Technology (NST), Pune. Focusing on Applied Intelligence, System Design, and Modern Development Frameworks.
-                        </p>
-                    </li>
-                </ol>
-            </section>
-
-            <section className="timeline" style={{ marginTop: '40px' }}>
-                <div className="title-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '30px' }}>
-                    <div className="icon-box" style={{
-                        background: 'var(--bg-gradient-jet)',
-                        color: 'var(--orange-yellow-crayola)',
-                        width: '44px', height: '44px',
-                        display: 'flex', justifyContent: 'center', alignItems: 'center',
-                        borderRadius: '10px', fontSize: '22px'
-                    }}>
-                        <ion-icon name="ribbon-outline"></ion-icon>
-                    </div>
-                    <h3 className="h3">Certifications</h3>
-                </div>
-
-                <ol className="timeline-list" style={{ marginLeft: '15px' }}>
-                    <li className="timeline-item" style={{ position: 'relative', paddingBottom: '30px', paddingLeft: '35px', borderLeft: '1px solid var(--jet)' }}>
-                        <div style={{
-                            position: 'absolute', left: '-6px', top: '0',
-                            width: '12px', height: '12px',
-                            background: 'var(--orange-yellow-crayola)',
-                            borderRadius: '50%', boxShadow: '0 0 0 4px var(--jet)'
-                        }}></div>
-                        <h4 className="h4 timeline-item-title">Web Dev, DSA & AI/ML Technical Workshop Leader</h4>
-                        <span style={{ color: 'var(--vegas-gold)', fontSize: 'var(--fs-8)', fontWeight: 'var(--fw-500)' }}>August 2024</span>
-                        <p className="timeline-text" style={{ color: 'var(--light-gray-70)', fontSize: 'var(--fs-7)', marginTop: '10px', lineHeight: '1.6' }}>
-                            Advanced certification recognizing leadership and technical proficiency in web technologies and algorithmic problem solving.
-                        </p>
-                    </li>
-                </ol>
-            </section>
-
-            <section className="service" style={{ marginTop: '45px' }}>
-                <h3 className="h3 service-title">What I'm Doing</h3>
-                <ul className="service-list" style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
-                    gap: '20px'
-                }}>
-                    {services.map((service, index) => (
-                        <li key={index} className="service-item" style={{
-                            background: 'var(--bg-gradient-onyx)',
-                            padding: '30px',
-                            borderRadius: '14px',
-                            border: '1px solid var(--jet)',
-                            boxShadow: 'var(--shadow-2)',
-                            display: 'flex',
-                            alignItems: 'flex-start',
-                            gap: '20px'
-                        }}>
-                            <div className="service-icon-box" style={{
-                                marginTop: '5px',
-                                color: 'var(--orange-yellow-crayola)',
-                                fontSize: '40px',
-                                flexShrink: 0,
-                                width: '40px'
-                            }}>
-                                {service.image ? (
-                                    <img src={service.image} alt={service.title} style={{ width: '100%', display: 'block' }} />
-                                ) : (
-                                    <ion-icon name={service.icon}></ion-icon>
-                                )}
+                <div className="services-grid">
+                    {services.map((service, index) => {
+                        const LucideComp = service.lucideIcon;
+                        return (
+                            <div
+                                key={index}
+                                className="service-card-3d tilt-3d"
+                                style={{ background: service.accent }}
+                            >
+                                <div className="card-top-row">
+                                    <div className="service-icon-wrapper">
+                                        {service.image ? (
+                                            <img
+                                                src={service.image}
+                                                alt={service.title}
+                                                className="service-custom-img"
+                                            />
+                                        ) : (
+                                            <LucideComp size={28} className="service-lucide-icon" />
+                                        )}
+                                    </div>
+                                    <span className="service-tag">{service.tag}</span>
+                                </div>
+                                <h4 className="h4 service-card-title">{service.title}</h4>
+                                <p className="service-card-desc">{service.description}</p>
                             </div>
-                            <div className="service-content-box">
-                                <h4 className="h4 service-item-title" style={{ marginBottom: '7px' }}>{service.title}</h4>
-                                <p className="service-item-text" style={{ fontSize: 'var(--fs-7)', lineHeight: '1.6', color: 'var(--light-gray)' }}>{service.description}</p>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                        );
+                    })}
+                </div>
             </section>
 
-            <section className="clients" style={{ marginTop: '45px' }}>
-                <h3 className="h3 clients-title">Technical Toolkit</h3>
-                <ul style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))',
-                    gap: '15px',
-                    padding: 0,
-                    listStyle: 'none'
-                }}>
+            {/* Education & Certifications Timeline */}
+            <section className="section-block">
+                <div className="section-header-row">
+                    <h3 className="h3 section-title">Education & Milestones</h3>
+                    <span className="section-subtitle">Academic & Leadership Track</span>
+                </div>
+
+                <div className="timeline-grid">
+                    <div className="timeline-card tilt-3d">
+                        <div className="timeline-card-header">
+                            <div className="timeline-badge-icon">
+                                <GraduationCap size={22} />
+                            </div>
+                            <div>
+                                <span className="timeline-period">2024 — 2028 (Undergraduate)</span>
+                                <h4 className="h4 timeline-card-heading">B.Tech in Computer Science (AI & ML)</h4>
+                            </div>
+                        </div>
+                        <p className="timeline-card-place">Newton School of Technology (NST), Pune</p>
+                        <p className="timeline-card-detail">
+                            Rigorous training in Applied Machine Learning, Data Structures & Algorithms,
+                            System Design, and Cloud-Native Full Stack Development.
+                        </p>
+                    </div>
+
+                    <div className="timeline-card tilt-3d">
+                        <div className="timeline-card-header">
+                            <div className="timeline-badge-icon violet">
+                                <Award size={22} />
+                            </div>
+                            <div>
+                                <span className="timeline-period">August 2024</span>
+                                <h4 className="h4 timeline-card-heading">Web Dev, DSA & AI/ML Workshop Leader</h4>
+                            </div>
+                        </div>
+                        <p className="timeline-card-place">Technical Leadership Recognition</p>
+                        <p className="timeline-card-detail">
+                            Led hands-on technical sessions mentoring peers through algorithmic problem-solving,
+                            modern web architecture, and applied AI workflows.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Technical Toolkit */}
+            <section className="section-block">
+                <div className="section-header-row">
+                    <h3 className="h3 section-title">Technical Toolkit</h3>
+                    <span className="section-subtitle">Technologies I work with daily</span>
+                </div>
+
+                <div className="toolkit-grid">
                     {techStack.map((tech, index) => (
-                        <li key={index} className="tech-card">
-                            <ion-icon name={tech.icon}></ion-icon>
-                            <span style={{ fontSize: 'var(--fs-8)', fontWeight: 'var(--fw-600)', color: 'var(--white-2)' }}>{tech.name}</span>
-                        </li>
+                        <div key={index} className="toolkit-chip tilt-3d">
+                            <span className="tech-dot" style={{ background: tech.color }}></span>
+                            <span className="tech-name">{tech.name}</span>
+                            <span className="tech-category">{tech.category}</span>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </section>
 
-            <section className="testimonials" style={{ marginTop: '45px' }}>
-                <h3 className="h3 testimonials-title">Find Me Online</h3>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                    <a href="https://github.com/Mishra-coder" target="_blank" rel="noreferrer" className="stat-card" style={{ padding: '15px' }}>
-                        <ion-icon name="logo-github" style={{ fontSize: '30px', color: 'var(--orange-yellow-crayola)' }}></ion-icon>
-                        <div>
-                            <h4 className="h4" style={{ margin: 0, fontSize: 'var(--fs-6)' }}>GitHub</h4>
-                            <p style={{ margin: 0, fontSize: 'var(--fs-8)', color: 'var(--light-gray-70)' }}>Consistent Repos & Contributions</p>
-                        </div>
-                    </a>
-                    <a href="https://leetcode.com/u/Devendra870/" target="_blank" rel="noreferrer" className="stat-card" style={{ padding: '15px' }}>
-                        <div style={{ width: '30px', flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-                            <img src={leetcodeIcon} alt="LeetCode" style={{ width: '100%' }} />
-                        </div>
-                        <div>
-                            <h4 className="h4" style={{ margin: 0, fontSize: 'var(--fs-6)' }}>LeetCode</h4>
-                            <p style={{ margin: 0, fontSize: 'var(--fs-8)', color: 'var(--light-gray-70)' }}>Problem Solving Enthusiast</p>
-                        </div>
-                    </a>
+            {/* Connect & Explore */}
+            <section className="section-block">
+                <div className="connect-bento tilt-3d">
+                    <div className="connect-bento-content">
+                        <h4 className="h4 connect-heading">Explore My Code & Solutions</h4>
+                        <p className="connect-text">
+                            Inspect open-source repositories on GitHub or view problem-solving tracks on LeetCode.
+                        </p>
+                    </div>
+                    <div className="connect-bento-actions">
+                        <a
+                            href="https://github.com/Mishra-coder"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="connect-btn"
+                        >
+                            <span>View GitHub</span>
+                            <ArrowUpRight size={16} />
+                        </a>
+                        <a
+                            href="https://leetcode.com/u/Devendra870/"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="connect-btn leetcode-btn"
+                        >
+                            <img src={leetcodeIcon} alt="LeetCode" className="btn-inline-icon" />
+                            <span>LeetCode Profile</span>
+                            <ArrowUpRight size={16} />
+                        </a>
+                    </div>
                 </div>
             </section>
         </article>
