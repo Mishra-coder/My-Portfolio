@@ -10,7 +10,7 @@ import {
 import { LaurelWreath, Github, Linkedin } from './Icons';
 import { celebrate } from '../lib/celebrate';
 
-const Navbar = ({ onOpenSection }) => {
+const Navbar = ({ onOpenSection, solid = false }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
@@ -42,6 +42,8 @@ const Navbar = ({ onOpenSection }) => {
 
     const handleBrandClick = (e) => {
         e.preventDefault();
+        setDrawerOpen(false);
+        onOpenSection?.('hero');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
@@ -58,11 +60,11 @@ const Navbar = ({ onOpenSection }) => {
     return (
         <>
             {/* Top Navigation Bar matching reference design */}
-            <header className={`ref-header-bar ${scrolled ? 'is-scrolled' : ''}`}>
+            <header className={`ref-header-bar ${scrolled || solid ? 'is-scrolled' : ''}`}>
                 <div className="ref-header-inner">
                     {/* Brand Name in elegant Serif Italic */}
                     <a
-                        href="#hero"
+                        href="/"
                         className="ref-brand-title"
                         onClick={handleBrandClick}
                     >

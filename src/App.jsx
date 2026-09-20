@@ -1,69 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import useTilt from './useTilt';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import Footer from './components/Footer';
-// The modal lives in its own chunk. We load it ourselves (no React.lazy/Suspense) so the
-// first open is not delayed by Suspense's fallback-reveal throttle.
-let modalModule = null;
-const loadProfileModal = () => modalModule || (modalModule = import('./components/ProfileModal'));
+import SectionPage from './components/SectionPage';
+
+const SECTIONS = ['about', 'projects', 'skills', 'achievements', 'resume', 'contact'];
+
+// "/about" -> "about", anything unknown -> null (home)
+const sectionFromPath = (pathname) => {
+  const seg = pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+  return SECTIONS.includes(seg) ? seg : null;
+};
 
 function App() {
   useTilt();
-  const [modalTab, setModalTab] = useState(null); // null when closed, 'about' | 'projects' | 'skills' | etc.
-  const [ProfileModal, setProfileModal] = useState(null);
+  const [section, setSection] = useState(() => sectionFromPath(window.location.pathname));
 
-  // Fetch the modal chunk right after first paint so the first menu click opens instantly.
-  useEffect(() => {
-    let alive = true;
-    const id = setTimeout(() => loadProfileModal().then((m) => alive && setProfileModal(() => m.default)), 200);
-    return () => { alive = false; clearTimeout(id); };
+  // Push a new URL and switch page.
+  const navigate = useCallback((path) => {
+    const next = sectionFromPath(path);
+    const target = next ? `/${next}` : '/';
+    if (window.location.pathname !== target) window.history.pushState(null, '', target);
+    setSection(next);
+    window.scrollTo({ top: 0, behavior: 'instant' in document.documentElement.style ? 'instant' : 'auto' });
   }, []);
 
-  const handleOpenSection = (sectionId) => {
-    // Normalizes sectionId
-    const tabMap = {
-      hero: null,
-      about: 'about',
-      projects: 'projects',
-      skills: 'skills',
-      achievements: 'achievements',
-      resume: 'resume',
-      contact: 'contact'
-    };
-    if (tabMap[sectionId] !== undefined) {
-      setModalTab(tabMap[sectionId]);
-    } else {
-      setModalTab('about');
-    }
-  };
+  // Browser back / forward
+  useEffect(() => {
+    const onPop = () => setSection(sectionFromPath(window.location.pathname));
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
-  const handleCloseModal = () => {
-    setModalTab(null);
-  };
+  // Navbar / hero / footer call this with a section id ("about", "contact", "hero", ...)
+  const handleOpenSection = (sectionId) => navigate(sectionId === 'hero' ? '/' : `/${sectionId}`);
 
   return (
-    <div className="editorial-app-root">
-      
-      {/* 1. Premium Sticky Navbar (Opens ProfileModal on menu item click) */}
-      <Navbar onOpenSection={handleOpenSection} />
+    <div className={`editorial-app-root ${section ? 'is-section-page' : ''}`}>
+      <Navbar onOpenSection={handleOpenSection} solid={Boolean(section)} />
 
-      {/* 2. Full-Bleed Reference Hero Section with Studio Cutout & Lime Aura */}
-      <HeroSection onOpenSection={handleOpenSection} />
-
-      {/* 3. Radiant CTA Banner & Giant Signature Footer */}
-      <Footer onOpenSection={handleOpenSection} />
-
-      {/* 4. Deep Profile Explorer Modal (Accessed exclusively via Menu Bar & Action Triggers) */}
-      {modalTab && ProfileModal && (
-        <ProfileModal
-          isOpen
-          activeTab={modalTab}
-          setActiveTab={setModalTab}
-          onClose={handleCloseModal}
-        />
+      {section ? (
+        <SectionPage activeTab={section} onNavigate={navigate} />
+      ) : (
+        <HeroSection onOpenSection={handleOpenSection} />
       )}
+
+      <Footer onOpenSection={handleOpenSection} />
     </div>
   );
 }

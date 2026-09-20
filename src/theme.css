@@ -3939,3 +3939,20 @@ img, svg, video, canvas { max-width: 100%; }
 @keyframes ai-orb-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
 @keyframes ai-orb-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @media (prefers-reduced-motion: reduce) { .ai-orb *, .ai-orb-core { animation: none !important; } }
+
+/* ---- Section pages (/about, /projects, ...) rendered in normal page flow ---- */
+.ref-page { width: 100%; padding: 96px 16px 48px; }
+.ref-page-container {
+  margin: 0 auto;
+  min-height: 60vh;
+  animation: none;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.06);
+}
+.ref-page .ref-modal-header { position: static; }
+.ref-page .ref-modal-brand { text-decoration: none; }
+.ref-page .ref-modal-tab-btn, .ref-page .ref-modal-close-btn { text-decoration: none; }
+.is-section-page .ref-prefooter-banner { margin-top: 0; }
+@media (max-width: 760px) {
+  .ref-page { padding: 72px 0 32px; }
+  .ref-page-container { border-radius: 0; border-left: none; border-right: none; min-height: 0; }
+}
