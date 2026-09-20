@@ -3594,13 +3594,6 @@ body::after {
   border-color: #84cc16 !important;
 }
 
-.filter-btn {
-  background: #ffffff !important;
-  border: 1px solid rgba(132, 204, 22, 0.28) !important;
-  color: #475569 !important;
-  border-radius: 9999px !important;
-}
-
 .filter-btn:hover {
   color: #0f172a !important;
   background: rgba(132, 204, 22, 0.12) !important;
@@ -3776,3 +3769,103 @@ img, svg, video, canvas { max-width: 100%; }
 .editorial-app-root, .ref-full-editorial-container, .ref-footer-section { width: 100%; overflow-x: clip; }
 .ref-ticker-strip { overflow: hidden; width: 100%; }
 .ref-giant-signature-wrap { overflow: hidden; }
+
+/* =========================================================
+   PROFILE MODAL: align project catalog with the editorial system
+   (tokens: --t-*, --r-*; palette: ink / slate / lime)
+   ========================================================= */
+.ref-modal-brand-name { font-size: var(--t-lg); }
+.ref-modal-brand-tag { font-size: var(--t-xs); text-transform: none; letter-spacing: 0.02em; }
+.ref-modal-tab-btn { font-size: var(--t-sm); font-weight: 600; }
+.ref-modal-close-btn { padding: 8px 18px; font-size: var(--t-sm); }
+
+.badge-pill {
+  background: rgba(163, 230, 53, 0.15) !important;
+  border: 1px solid rgba(132, 204, 22, 0.35) !important;
+  color: #4d7c0f !important;
+  font-size: var(--t-xs) !important;
+  font-weight: 700 !important;
+  border-radius: var(--r-pill) !important;
+  text-transform: none !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Filters + search: secondary pill / light field */
+.filter-btn,
+.ref-modal-tab-btn {
+  padding: 8px 18px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #475569;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  border-radius: var(--r-pill);
+}
+.filter-btn.active,
+.ref-modal-tab-btn.active { background: #84cc16 !important; border-color: #84cc16 !important; color: #0f172a !important; }
+.filter-pill-group { display: inline-flex; gap: 6px; padding: 5px; border-radius: var(--r-pill); background: rgba(0, 0, 0, 0.04); border: 1px solid rgba(132, 204, 22, 0.25); }
+.ref-modal-close-btn { border: 1px solid #111827; background: #111827; }
+.ref-modal-brand-name { font-size: var(--t-md); }
+.article-title { font-size: clamp(2rem, 3.8vw, 2.8rem) !important; }
+.ref-modal-container { border-radius: var(--r-card); }
+.ref-modal-avatar, .ref-modal-live-dot { border-radius: var(--r-pill); }
+.project-search-input {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #0f172a;
+  font-size: var(--t-sm);
+  border-radius: var(--r-pill);
+}
+.project-search-input::placeholder { color: #64748b; }
+.search-icon { color: #64748b; }
+
+/* Project cards: light editorial card */
+.project-card-3d {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--r-card);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+.project-img { border-radius: 0; }
+.project-main-title { font-size: var(--t-xl); color: #0f172a; }
+.project-subtitle-text { font-size: var(--t-sm); color: #475569; }
+.project-desc-text { font-size: var(--t-sm); color: #64748b; }
+
+.project-tech-tag,
+.project-category-pill,
+.mobile-preview-badge {
+  font-size: var(--t-xs);
+  padding: 4px 10px;
+  border-radius: var(--r-sm);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-weight: 500;
+}
+.project-category-pill,
+.mobile-preview-badge { background: rgba(163, 230, 53, 0.15); border-color: rgba(132, 204, 22, 0.35); color: #4d7c0f; }
+.featured-badge { background: #111827; color: #ffffff; font-size: var(--t-xs); font-weight: 600; border-radius: var(--r-pill); padding: 4px 12px; }
+
+/* Overlay actions: primary / secondary pills */
+.overlay-btn {
+  padding: 12px 22px;
+  border-radius: var(--r-pill);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #0f172a;
+}
+.overlay-btn.primary { background: #111827; border: 1px solid #111827; color: #ffffff; }
+
+/* Card footer links: tertiary text buttons */
+.card-action-link,
+.card-action-link.live {
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: #334155;
+}
+.card-action-link:hover { color: #0f172a; }
+.project-card-footer { border-top: 1px solid rgba(0, 0, 0, 0.06); }
+.mobile-preview-badge { background: transparent; border-color: transparent; padding: 4px 0; color: #4d7c0f; text-decoration: underline; text-underline-offset: 3px; }
+.filter-btn { color: #475569 !important; }
