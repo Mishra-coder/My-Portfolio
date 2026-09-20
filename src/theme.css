@@ -3156,9 +3156,7 @@ body::after {
 .ref-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.48);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(15, 23, 42, 0.6);
   z-index: 10000;
   display: flex;
   justify-content: center;
@@ -3205,7 +3203,6 @@ body::after {
 .ref-modal-aura {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
   pointer-events: none;
   z-index: 0;
 }
@@ -3916,3 +3913,29 @@ img, svg, video, canvas { max-width: 100%; }
 .subject-chips-row { display: inline-flex; flex-wrap: wrap; gap: 6px; padding: 5px; border-radius: var(--r-pill); background: rgba(0, 0, 0, 0.04); border: 1px solid rgba(132, 204, 22, 0.25); }
 /* Chips */
 .competency-badge { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; color: #475569 !important; padding: 4px 10px !important; border-radius: var(--r-sm) !important; }
+
+/* ---- AI orb (CSS/SVG, replaces WebGL) ---- */
+.ai-orb { position: relative; margin: 0 auto; perspective: 700px; }
+.ai-orb-core {
+  position: absolute; inset: 28%; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #d9f99d 0%, #84cc16 45%, #587D34 100%);
+  box-shadow: 0 0 40px rgba(132, 204, 22, 0.45), inset 0 0 24px rgba(255, 255, 255, 0.35);
+  animation: ai-orb-pulse 3.2s ease-in-out infinite;
+}
+.ai-orb-ring, .ai-orb-mesh { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke-linejoin: round; }
+.ai-orb-ring { stroke: rgba(88, 125, 52, 0.55); stroke-width: 0.9; stroke-dasharray: 4 3; transform-style: preserve-3d; }
+.ai-orb-ring.ring-1 { animation: ai-orb-spin 9s linear infinite; }
+.ai-orb-ring.ring-2 { transform: rotate(60deg); animation: ai-orb-spin 12s linear infinite reverse; }
+.ai-orb-ring.ring-3 { transform: rotate(-60deg); animation: ai-orb-spin 15s linear infinite; }
+.ai-orb-mesh { stroke: rgba(15, 23, 42, 0.35); stroke-width: 0.7; animation: ai-orb-spin 24s linear infinite reverse; }
+.ai-orb-dot { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: #84cc16; box-shadow: 0 0 10px rgba(132, 204, 22, 0.8); animation: ai-orb-float 4s ease-in-out infinite; }
+.ai-orb-dot.d1 { top: 12%; left: 22%; }
+.ai-orb-dot.d2 { top: 18%; right: 14%; animation-delay: -1s; }
+.ai-orb-dot.d3 { bottom: 16%; left: 14%; animation-delay: -2s; }
+.ai-orb-dot.d4 { bottom: 10%; right: 24%; animation-delay: -3s; }
+@keyframes ai-orb-spin { to { transform: rotate(360deg); } }
+.ai-orb-ring.ring-2 { animation-name: ai-orb-spin-2; } @keyframes ai-orb-spin-2 { from { transform: rotate(60deg); } to { transform: rotate(420deg); } }
+.ai-orb-ring.ring-3 { animation-name: ai-orb-spin-3; } @keyframes ai-orb-spin-3 { from { transform: rotate(-60deg); } to { transform: rotate(300deg); } }
+@keyframes ai-orb-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes ai-orb-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@media (prefers-reduced-motion: reduce) { .ai-orb *, .ai-orb-core { animation: none !important; } }

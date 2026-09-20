@@ -16,7 +16,7 @@
   --text-gradient-yellow: linear-gradient(90deg, #587D34 0%, #65a30d 100%);
   /* --- type --- */
   --ff-poppins: 'Plus Jakarta Sans', 'Poppins', system-ui, sans-serif;
-  --ff-display: 'Sora', 'Plus Jakarta Sans', sans-serif;
+  --ff-display: 'Plus Jakarta Sans', system-ui, sans-serif;
   --fs-1: var(--t-xl);
   --fs-2: var(--t-lg);
   --fs-3: var(--t-lg);

@@ -1,29 +1,24 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import useTilt from './useTilt';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import Footer from './components/Footer';
-const ThreeCanvas = lazy(() => import('./components/ThreeCanvas'));
-const ProfileModal = lazy(() => import('./components/ProfileModal'));
-
-// Background 3D only on capable desktop devices, and only after the page is idle.
-const canRun3D = () =>
-  window.matchMedia('(min-width: 900px) and (hover: hover)').matches &&
-  !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
-  (navigator.hardwareConcurrency ?? 4) >= 4 &&
-  !navigator.connection?.saveData;
+// The modal lives in its own chunk. We load it ourselves (no React.lazy/Suspense) so the
+// first open is not delayed by Suspense's fallback-reveal throttle.
+let modalModule = null;
+const loadProfileModal = () => modalModule || (modalModule = import('./components/ProfileModal'));
 
 function App() {
   useTilt();
   const [modalTab, setModalTab] = useState(null); // null when closed, 'about' | 'projects' | 'skills' | etc.
-  const [show3D, setShow3D] = useState(false);
+  const [ProfileModal, setProfileModal] = useState(null);
 
+  // Fetch the modal chunk right after first paint so the first menu click opens instantly.
   useEffect(() => {
-    if (!canRun3D()) return;
-    const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1200));
-    const id = idle(() => setShow3D(true));
-    return () => (window.cancelIdleCallback || clearTimeout)(id);
+    let alive = true;
+    const id = setTimeout(() => loadProfileModal().then((m) => alive && setProfileModal(() => m.default)), 200);
+    return () => { alive = false; clearTimeout(id); };
   }, []);
 
   const handleOpenSection = (sectionId) => {
@@ -50,7 +45,6 @@ function App() {
 
   return (
     <div className="editorial-app-root">
-      {show3D && <Suspense fallback={null}><ThreeCanvas /></Suspense>}
       
       {/* 1. Premium Sticky Navbar (Opens ProfileModal on menu item click) */}
       <Navbar onOpenSection={handleOpenSection} />
@@ -62,15 +56,13 @@ function App() {
       <Footer onOpenSection={handleOpenSection} />
 
       {/* 4. Deep Profile Explorer Modal (Accessed exclusively via Menu Bar & Action Triggers) */}
-      {modalTab && (
-        <Suspense fallback={null}>
-          <ProfileModal
-            isOpen
-            activeTab={modalTab}
-            setActiveTab={setModalTab}
-            onClose={handleCloseModal}
-          />
-        </Suspense>
+      {modalTab && ProfileModal && (
+        <ProfileModal
+          isOpen
+          activeTab={modalTab}
+          setActiveTab={setModalTab}
+          onClose={handleCloseModal}
+        />
       )}
     </div>
   );

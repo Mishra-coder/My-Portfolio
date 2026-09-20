@@ -1,5 +1,5 @@
 import React from 'react';
-const ThreeHeroOrb = React.lazy(() => import('./ThreeHeroOrb'));
+import AiOrb from './AiOrb';
 import leetcodeIcon from '../assets/leetcode_icon.webp';
 import mobileDevIcon from '../assets/mobile_dev_icon_new.webp';
 import aiIcon from '../assets/ai_icon_v2.webp';
@@ -105,8 +105,8 @@ const About = () => {
                 </div>
 
                 <div className="hero-3d-visual">
-                    <React.Suspense fallback={<div style={{ width: 240, height: 240 }} />}><ThreeHeroOrb size={240} /></React.Suspense>
-                    <span className="orb-caption">Interactive 3D Core • Drag to Rotate</span>
+                    <AiOrb size={240} />
+                    <span className="orb-caption">AI &amp; Systems Core</span>
                 </div>
             </section>
 
