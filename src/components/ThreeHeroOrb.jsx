@@ -18,7 +18,7 @@ const ThreeHeroOrb = ({ size = 260 }) => {
             powerPreference: 'high-performance'
         });
         renderer.setSize(size, size);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         mount.appendChild(renderer.domElement);
 
         // Core 3D Wireframe Icosahedron

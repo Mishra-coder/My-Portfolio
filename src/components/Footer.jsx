@@ -1,6 +1,6 @@
 import React from 'react';
-import leetcodeIcon from '../assets/leetcode_icon.png';
-import { ArrowUp, ArrowRight, Sparkles } from 'lucide-react';
+import leetcodeIcon from '../assets/leetcode_icon.webp';
+import { ArrowUp, ArrowRight } from 'lucide-react';
 import { Github, Linkedin } from './Icons';
 
 const Footer = ({ onOpenSection }) => {
@@ -29,49 +29,7 @@ const Footer = ({ onOpenSection }) => {
                 </div>
             </div>
 
-            {/* 2. MINIMALIST NAVIGATION & SOCIALS */}
             <div className="ref-footer-inner">
-                <div className="ref-footer-nav-row">
-                    <div className="ref-footer-links">
-                        <button type="button" className="ref-footer-link-btn" onClick={scrollToTop}>Home</button>
-                        <button type="button" className="ref-footer-link-btn" onClick={() => onOpenSection?.('about')}>About</button>
-                        <button type="button" className="ref-footer-link-btn" onClick={() => onOpenSection?.('projects')}>Projects</button>
-                        <button type="button" className="ref-footer-link-btn" onClick={() => onOpenSection?.('skills')}>Skills</button>
-                        <button type="button" className="ref-footer-link-btn" onClick={() => onOpenSection?.('resume')}>Resume</button>
-                        <button type="button" className="ref-footer-link-btn" onClick={() => onOpenSection?.('contact')}>Contact</button>
-                    </div>
-
-                    <div className="ref-footer-socials">
-                        <a
-                            href="https://github.com/Mishra-coder"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="ref-footer-icon-btn"
-                            title="GitHub"
-                        >
-                            <Github size={17} />
-                        </a>
-                        <a
-                            href="https://linkedin.com/in/devendra-mishra-b9613b339/"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="ref-footer-icon-btn"
-                            title="LinkedIn"
-                        >
-                            <Linkedin size={17} />
-                        </a>
-                        <a
-                            href="https://leetcode.com/u/Devendra870/"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="ref-footer-icon-btn"
-                            title="LeetCode @Devendra870"
-                        >
-                            <img src={leetcodeIcon} alt="LeetCode" className="ref-footer-leetcode-img" />
-                        </a>
-                    </div>
-                </div>
-
                 {/* 3. GIANT EDITORIAL SIGNATURE (Exact match to reference bottom) */}
                 <div className="ref-giant-signature-wrap">
                     <span className="ref-giant-signature-text">Devendra Mishra</span>
@@ -82,15 +40,48 @@ const Footer = ({ onOpenSection }) => {
                     <p className="ref-footer-copy">
                         © {new Date().getFullYear()} Devendra Mishra • Newton School of Technology, Pune.
                     </p>
-                    <button
-                        type="button"
-                        className="ref-footer-top-btn"
-                        onClick={scrollToTop}
-                        title="Back to Top"
-                    >
-                        <span>Back to top</span>
-                        <ArrowUp size={14} />
-                    </button>
+
+                    <div className="ref-footer-bottom-actions">
+                        <div className="ref-footer-socials">
+                            <a
+                                href="https://github.com/Mishra-coder"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="ref-footer-icon-btn"
+                                title="GitHub"
+                            >
+                                <Github size={17} />
+                            </a>
+                            <a
+                                href="https://linkedin.com/in/devendra-mishra-b9613b339/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="ref-footer-icon-btn"
+                                title="LinkedIn"
+                            >
+                                <Linkedin size={17} />
+                            </a>
+                            <a
+                                href="https://leetcode.com/u/Devendra870/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="ref-footer-icon-btn"
+                                title="LeetCode @Devendra870"
+                            >
+                                <img src={leetcodeIcon} alt="LeetCode" className="ref-footer-leetcode-img" />
+                            </a>
+                        </div>
+
+                        <button
+                            type="button"
+                            className="ref-footer-top-btn"
+                            onClick={scrollToTop}
+                            title="Back to Top"
+                        >
+                            <span>Back to top</span>
+                            <ArrowUp size={14} />
+                        </button>
+                    </div>
                 </div>
             </div>
         </footer>

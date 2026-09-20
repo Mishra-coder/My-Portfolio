@@ -5,7 +5,7 @@ import Skills from './Skills';
 import Achievements from './Achievements';
 import Resume from './Resume';
 import Contact from './Contact';
-import devendraPortrait from '../assets/devendra_portrait.png';
+import devendraPortrait from '../assets/devendra_portrait.webp';
 import {
     X,
     User,

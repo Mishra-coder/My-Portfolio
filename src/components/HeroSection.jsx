@@ -1,106 +1,27 @@
 import React from 'react';
-import devendraPortrait from '../assets/devendra_portrait.png';
-import successMantraImg from '../assets/success_mantra_new.png';
-import karoPitchImg from '../assets/karo_pitch_web.png';
-import akoinImg from '../assets/akoin_web.png';
-import aromaLuxeImg from '../assets/aroma_luxe_web.png';
-import zappifyImg from '../assets/zappify_mockup.jpg';
-import bgRemoverImg from '../assets/bg_remover.png';
-import confetti from 'canvas-confetti';
+import devendraPortrait from '../assets/devendra_portrait.webp';
+import { celebrate } from '../lib/celebrate';
+import { projects } from '../data/projects';
 import {
-    ArrowRight,
     ArrowUpRight,
     Download,
-    Layers,
     BrainCircuit,
-    CheckCircle2,
-    GraduationCap,
-    Send,
-    MapPin,
     Sparkles,
     Code2,
-    Cpu,
     Smartphone,
     Database,
     Zap,
     ExternalLink
 } from 'lucide-react';
-import { Github, Linkedin } from './Icons';
 
 const HeroSection = ({ onOpenSection }) => {
     const resumePdf = "/DEVENDRA_RESUME.pdf";
 
-    const handleDownloadCV = () => {
-        try {
-            confetti({
-                particleCount: 90,
-                spread: 75,
-                origin: { y: 0.6 },
-                colors: ['#84cc16', '#a3e635', '#bef264', '#10b981']
-            });
-        } catch (e) { }
-    };
+    const handleDownloadCV = () => celebrate({ spread: 75 });
 
     const techStack = [
         "React.js", "Node.js", "Python", "TypeScript", "React Native",
         "PyTorch / AI", "MongoDB", "PostgreSQL", "Next.js", "Tailwind CSS", "REST APIs"
-    ];
-
-    const bentoProjects = [
-        {
-            title: "Success Mantra",
-            subtitle: "Coaching & Student Learning Management System",
-            category: "Full-Stack Web App",
-            image: successMantraImg,
-            link: "https://success-mantra-dm.vercel.app/",
-            github: "https://github.com/Mishra-coder/Coaching_Website",
-            tags: ["React", "Node.js", "Express", "MongoDB", "Auth"]
-        },
-        {
-            title: "Karo Pitch",
-            subtitle: "Investor-Founder Pitch Platform",
-            category: "Full-Stack Web App",
-            image: karoPitchImg,
-            link: "https://karo-pitch.vercel.app/",
-            github: "https://github.com/Mishra-coder/Karo-Pitch",
-            tags: ["React", "Node.js", "MongoDB", "Tailwind"]
-        },
-        {
-            title: "AKOIN",
-            subtitle: "Web3 Crypto & Currency Analytics",
-            category: "Finance & Web3 Dashboard",
-            image: akoinImg,
-            link: "https://akoin.vercel.app/",
-            github: "https://github.com/Mishra-coder/Akoin",
-            tags: ["React", "Crypto APIs", "Chart.js", "Vite"]
-        },
-        {
-            title: "Zappify",
-            subtitle: "Modern Footwear Store",
-            category: "Mobile E-Commerce",
-            image: zappifyImg,
-            link: "https://zappify-sepia.vercel.app/",
-            github: "https://github.com/Mishra-coder/Zappify",
-            tags: ["React Native", "TypeScript", "State Mgmt"]
-        },
-        {
-            title: "Aroma Luxe",
-            subtitle: "Luxury Fragrance Discovery",
-            category: "Mobile Application",
-            image: aromaLuxeImg,
-            link: "https://perfume-app-h3ct.vercel.app/",
-            github: "https://github.com/Mishra-coder/Perfume_APP",
-            tags: ["React Native", "Expo", "Mobile UX"]
-        },
-        {
-            title: "AI Background Remover",
-            subtitle: "Instant Image Processing Tool",
-            category: "Image Processing API",
-            image: bgRemoverImg,
-            link: "https://bg-remover-dm.vercel.app/",
-            github: "https://github.com/Mishra-coder/BG.Remover",
-            tags: ["React", "Image Processing API", "Vite"]
-        }
     ];
 
     return (
@@ -123,6 +44,8 @@ const HeroSection = ({ onOpenSection }) => {
                             src={devendraPortrait}
                             alt="Devendra Mishra - Full Stack & AI Engineer"
                             className="ref-portrait-cutout"
+                            fetchPriority="high"
+                            decoding="async"
                         />
                     </div>
 
@@ -138,30 +61,6 @@ const HeroSection = ({ onOpenSection }) => {
                     <div className="ref-floating-bio">
                         <p>
                             passionate about creating intuitive digital experiences and intelligent AI systems that connect users with value.
-                        </p>
-                    </div>
-
-                    {/* Bottom Left: Social Proof Avatars */}
-                    <div className="ref-bottom-proof">
-                        <div className="ref-avatar-stack">
-                            <img
-                                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=faces"
-                                alt="Dev"
-                                className="proof-avatar-img"
-                            />
-                            <img
-                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces"
-                                alt="Dev"
-                                className="proof-avatar-img"
-                            />
-                            <img
-                                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&h=80&fit=crop&crop=faces"
-                                alt="Dev"
-                                className="proof-avatar-img"
-                            />
-                        </div>
-                        <p className="ref-proof-caption">
-                            Trusted by over <strong>1200+ developers</strong> across open-source and commercial projects.
                         </p>
                     </div>
 
@@ -225,7 +124,7 @@ const HeroSection = ({ onOpenSection }) => {
                     </div>
 
                     <div className="ref-bento-grid">
-                        {bentoProjects.map((project, index) => (
+                        {projects.map((project, index) => (
                             <a
                                 key={index}
                                 href={project.link}
@@ -242,7 +141,7 @@ const HeroSection = ({ onOpenSection }) => {
                                     />
                                     <div className="ref-bento-overlay">
                                         <div className="ref-bento-badge">
-                                            <span>{project.category}</span>
+                                            <span>{project.kind}</span>
                                             <ExternalLink size={14} />
                                         </div>
                                     </div>
@@ -337,5 +236,4 @@ const HeroSection = ({ onOpenSection }) => {
 };
 
 export default HeroSection;
-
 

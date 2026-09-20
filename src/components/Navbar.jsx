@@ -1,24 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import devendraPortrait from '../assets/devendra_portrait.png';
+import devendraPortrait from '../assets/devendra_portrait.webp';
 import {
-    Menu,
     X,
     ArrowUpRight,
     Download,
     Mail,
-    Phone,
-    MapPin,
-    Layers,
-    BrainCircuit,
     Award
 } from 'lucide-react';
 import { LaurelWreath, Github, Linkedin } from './Icons';
-import confetti from 'canvas-confetti';
+import { celebrate } from '../lib/celebrate';
 
 const Navbar = ({ onOpenSection }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [activeSection, setActiveSection] = useState('hero');
 
     const navLinks = [
         { num: '01', name: 'About', id: 'about' },
@@ -59,16 +53,7 @@ const Navbar = ({ onOpenSection }) => {
         }
     };
 
-    const handleDownloadCV = () => {
-        try {
-            confetti({
-                particleCount: 80,
-                spread: 70,
-                origin: { y: 0.5 },
-                colors: ['#84cc16', '#a3e635', '#10b981', '#38bdf8']
-            });
-        } catch (e) { }
-    };
+    const handleDownloadCV = () => celebrate({ particleCount: 80, y: 0.5 });
 
     return (
         <>
@@ -148,7 +133,7 @@ const Navbar = ({ onOpenSection }) => {
                             <li key={link.id} className="ref-drawer-item">
                                 <button
                                     type="button"
-                                    className={`ref-drawer-link-btn ${activeSection === link.id ? 'active' : ''}`}
+                                    className="ref-drawer-link-btn"
                                     onClick={(e) => handleNavClick(e, link.id)}
                                 >
                                     <span className="ref-link-num">{link.num}</span>

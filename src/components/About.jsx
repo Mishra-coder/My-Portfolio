@@ -1,8 +1,8 @@
 import React from 'react';
-import ThreeHeroOrb from './ThreeHeroOrb';
-import leetcodeIcon from '../assets/leetcode_icon.png';
-import mobileDevIcon from '../assets/mobile_dev_icon_new.png';
-import aiIcon from '../assets/ai_icon_v2.png';
+const ThreeHeroOrb = React.lazy(() => import('./ThreeHeroOrb'));
+import leetcodeIcon from '../assets/leetcode_icon.webp';
+import mobileDevIcon from '../assets/mobile_dev_icon_new.webp';
+import aiIcon from '../assets/ai_icon_v2.webp';
 import {
     BrainCircuit,
     Layers,
@@ -15,8 +15,7 @@ import {
     Sparkles,
     Flame,
     ArrowUpRight,
-    Terminal,
-    Cpu
+    Terminal
 } from 'lucide-react';
 
 const About = () => {
@@ -106,7 +105,7 @@ const About = () => {
                 </div>
 
                 <div className="hero-3d-visual">
-                    <ThreeHeroOrb size={240} />
+                    <React.Suspense fallback={<div style={{ width: 240, height: 240 }} />}><ThreeHeroOrb size={240} /></React.Suspense>
                     <span className="orb-caption">Interactive 3D Core • Drag to Rotate</span>
                 </div>
             </section>

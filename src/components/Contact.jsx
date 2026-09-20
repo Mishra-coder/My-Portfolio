@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import confetti from 'canvas-confetti';
+import { celebrate } from '../lib/celebrate';
 import {
     Mail,
     Send,
@@ -40,16 +40,7 @@ const Contact = () => {
             setIsSending(false);
             setIsSent(true);
 
-            try {
-                confetti({
-                    particleCount: 90,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#6366f1', '#38bdf8', '#a855f7', '#10b981']
-                });
-            } catch (err) {
-                // fallback
-            }
+            celebrate({ palette: 'indigo' });
 
             // Reset after delay
             setTimeout(() => {

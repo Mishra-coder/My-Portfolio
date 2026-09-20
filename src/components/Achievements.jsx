@@ -1,6 +1,6 @@
 import React from 'react';
-import hacktoberfestBadge from '../assets/hacktoberfest_badge.png';
-import certificationImg from '../assets/certification_bg.png';
+import hacktoberfestBadge from '../assets/hacktoberfest_badge.webp';
+import certificationImg from '../assets/certification_bg.webp';
 import {
     Award,
     Sparkles,

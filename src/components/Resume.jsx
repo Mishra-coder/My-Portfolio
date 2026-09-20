@@ -1,5 +1,5 @@
 import React from 'react';
-import confetti from 'canvas-confetti';
+import { celebrate } from '../lib/celebrate';
 import {
     Download,
     ExternalLink,
@@ -14,17 +14,7 @@ const Resume = () => {
     const resumePdf = "/DEVENDRA_RESUME.pdf";
 
     const handleDownload = () => {
-        // Trigger celebratory confetti burst
-        try {
-            confetti({
-                particleCount: 70,
-                spread: 60,
-                origin: { y: 0.7 },
-                colors: ['#6366f1', '#38bdf8', '#a855f7', '#10b981']
-            });
-        } catch (e) {
-            // graceful fallback if canvas not available
-        }
+        celebrate({ palette: 'indigo', particleCount: 70, spread: 60, y: 0.7 });
     };
 
     return (

@@ -20,11 +20,11 @@ const ThreeCanvas = () => {
 
         const renderer = new THREE.WebGLRenderer({
             alpha: true,
-            antialias: true,
+            antialias: false,
             powerPreference: 'high-performance',
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         container.appendChild(renderer.domElement);
 
         // Ambient Particles
@@ -162,7 +162,15 @@ const ThreeCanvas = () => {
 
         animate();
 
+        // Pause rendering while the tab is hidden
+        const onVisibility = () => {
+            if (document.hidden) cancelAnimationFrame(animationFrameId);
+            else animate();
+        };
+        document.addEventListener('visibilitychange', onVisibility);
+
         return () => {
+            document.removeEventListener('visibilitychange', onVisibility);
             window.removeEventListener('pointermove', onPointerMove);
             window.removeEventListener('resize', onResize);
             cancelAnimationFrame(animationFrameId);

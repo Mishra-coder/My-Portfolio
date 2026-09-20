@@ -4,8 +4,6 @@ import {
     Database,
     BrainCircuit,
     Smartphone,
-    GitBranch,
-    Terminal,
     Sparkles,
     CheckCircle2
 } from 'lucide-react';
