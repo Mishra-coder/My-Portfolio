@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import devendraPortrait from '../assets/devendra_portrait.webp';
+import devendraPortrait from '../assets/devendra_avatar.webp';
 import {
     X,
     ArrowUpRight,
@@ -108,7 +108,7 @@ const Navbar = ({ onOpenSection, solid = false }) => {
             {/* Slide-over Editorial Navigation Drawer */}
             <div className={`ref-drawer-backdrop ${drawerOpen ? 'open' : ''}`} onClick={() => setDrawerOpen(false)} />
             
-            <aside className={`ref-drawer-panel ${drawerOpen ? 'open' : ''}`} aria-hidden={!drawerOpen}>
+            <aside className={`ref-drawer-panel ${drawerOpen ? 'open' : ''}`} inert={!drawerOpen}>
                 <div className="ref-drawer-header">
                     <div className="ref-drawer-profile">
                         <img src={devendraPortrait} alt="Devendra Mishra" className="ref-drawer-avatar" />

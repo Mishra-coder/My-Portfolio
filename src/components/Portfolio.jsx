@@ -80,9 +80,14 @@ const Portfolio = () => {
                             <div className="project-img-container">
                                 <img
                                     src={project.image}
+                                    srcSet={`${project.image} ${project.imageWidth}w, ${project.image2x} ${project.imageWidth * 2}w`}
+                                    sizes="(max-width: 760px) 100vw, (max-width: 900px) 90vw, 600px"
+                                    width={project.imageWidth}
+                                    height={project.imageHeight}
                                     alt={project.title}
                                     className="project-img"
                                     loading="lazy"
+                                    decoding="async"
                                 />
                                 <div className="project-overlay">
                                     <div className="overlay-actions">

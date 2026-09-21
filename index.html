@@ -5,13 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <link rel="icon" type="image/jpeg" href="/avatar.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-    onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"></noscript>
+  <!-- Self-hosted fonts (latin subsets, variable). Preloaded so the hero text never swaps late. -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/plus-jakarta-sans.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/playfair-display-italic.woff2" crossorigin>
+  <!-- LCP image: Vite rewrites this href to the hashed build asset -->
+  <link rel="preload" as="image" href="/src/assets/devendra_portrait-1x.webp" imagesrcset="/src/assets/devendra_portrait-1x.webp 576w, /src/assets/devendra_portrait-2x.webp 682w" imagesizes="(max-width: 760px) 88vw, 576px" fetchpriority="high">
   <meta name="theme-color" content="#fafbf7" />
   <meta name="description" content="Devendra Mishra - B.Tech AI & ML Student & Full-Stack Developer Portfolio" />
   <title>Devendra Mishra | Portfolio</title>

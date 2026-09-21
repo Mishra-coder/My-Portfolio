@@ -1,5 +1,6 @@
 import React from 'react';
-import devendraPortrait from '../assets/devendra_portrait.webp';
+import devendraPortrait from '../assets/devendra_portrait-1x.webp';
+import devendraPortrait2x from '../assets/devendra_portrait-2x.webp';
 import { celebrate } from '../lib/celebrate';
 import { projects } from '../data/projects';
 import {
@@ -42,6 +43,10 @@ const HeroSection = ({ onOpenSection }) => {
                     <div className="ref-portrait-wrapper">
                         <img
                             src={devendraPortrait}
+                            srcSet={`${devendraPortrait} 576w, ${devendraPortrait2x} 682w`}
+                            sizes="(max-width: 760px) 88vw, 576px"
+                            width="682"
+                            height="1024"
                             alt="Devendra Mishra - Full Stack & AI Engineer"
                             className="ref-portrait-cutout"
                             fetchPriority="high"
@@ -135,9 +140,14 @@ const HeroSection = ({ onOpenSection }) => {
                                 <div className="ref-bento-preview-wrap">
                                     <img
                                         src={project.image}
+                                        srcSet={`${project.image} ${project.imageWidth}w, ${project.image2x} ${project.imageWidth * 2}w`}
+                                        sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 756px"
+                                        width={project.imageWidth}
+                                        height={project.imageHeight}
                                         alt={project.title}
                                         className="ref-bento-img"
                                         loading="lazy"
+                                        decoding="async"
                                     />
                                     <div className="ref-bento-overlay">
                                         <div className="ref-bento-badge">
