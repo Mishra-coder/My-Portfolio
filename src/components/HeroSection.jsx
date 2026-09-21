@@ -36,7 +36,7 @@ const HeroSection = ({ onOpenSection }) => {
                     {/* Headline Typography (Layered: Name behind head, Role in front of face/hair) */}
                     <div className="ref-hero-typography">
                         <h1 className="ref-hero-name">Hi I'm Devendra</h1>
-                        <h2 className="ref-hero-role">Full Stack & AI Engineer</h2>
+                        <h2 className="ref-hero-role">Full Stack Engineer</h2>
                     </div>
 
                     {/* Centered Cutout Portrait (Enlarged Profile Image) */}
@@ -47,7 +47,7 @@ const HeroSection = ({ onOpenSection }) => {
                             sizes="(max-width: 760px) 88vw, 576px"
                             width="682"
                             height="1024"
-                            alt="Devendra Mishra - Full Stack & AI Engineer"
+                            alt="Devendra Mishra - Full Stack Engineer"
                             className="ref-portrait-cutout"
                             fetchPriority="high"
                             decoding="async"
