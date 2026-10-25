@@ -9,6 +9,7 @@ import {
     Briefcase
 } from 'lucide-react';
 import SectionHead from './SectionHead';
+import { PuffyIcon } from './Icons';
 
 const Resume = () => {
     const resumePdf = "/DEVENDRA_RESUME.pdf";
@@ -30,7 +31,7 @@ const Resume = () => {
                             className="btn-dark"
                             onClick={handleDownload}
                         >
-                            <Download size={17} />
+                            <PuffyIcon name="resume" size={30} className="is-inline" />
                             <span>Download CV</span>
                         </a>
                         <a
@@ -115,7 +116,7 @@ const Resume = () => {
                                     className="btn-dark"
                                     onClick={handleDownload}
                                 >
-                                    <Download size={16} />
+                                    <PuffyIcon name="resume" size={30} className="is-inline" />
                                     <span>Download Devendra_Resume.pdf</span>
                                 </a>
                             </div>

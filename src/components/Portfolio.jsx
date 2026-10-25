@@ -8,7 +8,7 @@ import {
     Smartphone,
     Globe
 } from 'lucide-react';
-import { Github } from './Icons';
+import { PuffyIcon } from './Icons';
 import { projects } from '../data/projects';
 import SectionHead from './SectionHead';
 
@@ -145,7 +145,7 @@ const Portfolio = () => {
                                                 rel="noreferrer"
                                                 className="btn-cream is-small"
                                             >
-                                                <Github size={15} />
+                                                <PuffyIcon name="github" size={28} className="is-inline" />
                                                 <span>Repository</span>
                                             </a>
                                         )}

@@ -2,6 +2,7 @@ import React from 'react';
 import AiOrb from './AiOrb';
 import GithubGraph from './GithubGraph';
 import SectionHead from './SectionHead';
+import { PuffyIcon } from './Icons';
 import leetcodeIcon from '../assets/leetcode_icon.webp';
 import mobileDevIcon from '../assets/mobile_dev_icon_new.webp';
 import aiIcon from '../assets/ai_icon_v2.webp';
@@ -17,8 +18,6 @@ import {
     ArrowUpRight,
     Terminal
 } from 'lucide-react';
-
-const DEVICON = 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons';
 
 const About = () => {
     const services = [
@@ -49,18 +48,18 @@ const About = () => {
     ];
 
     const techStack = [
-        { name: "React", category: "Frontend", icon: "react/react-original" },
-        { name: "TypeScript", category: "Language", icon: "typescript/typescript-original" },
-        { name: "JavaScript", category: "Language", icon: "javascript/javascript-original" },
-        { name: "Node.js", category: "Backend", icon: "nodejs/nodejs-original" },
-        { name: "Python", category: "AI / Core", icon: "python/python-original" },
-        { name: "React Native", category: "Mobile", icon: "react/react-original" },
-        { name: "Tailwind CSS", category: "Frontend", icon: "tailwindcss/tailwindcss-original" },
-        { name: "MongoDB", category: "Database", icon: "mongodb/mongodb-original" },
-        { name: "MySQL / SQL", category: "Database", icon: "mysql/mysql-original" },
-        { name: "Git & GitHub", category: "DevOps", icon: "git/git-original" },
-        { name: "Next.js", category: "Framework", icon: "nextjs/nextjs-original" },
-        { name: "Vite", category: "Tooling", icon: "vitejs/vitejs-original" }
+        { name: "React", category: "Frontend", icon: "react" },
+        { name: "TypeScript", category: "Language", icon: "typescript" },
+        { name: "JavaScript", category: "Language", icon: "javascript" },
+        { name: "Node.js", category: "Backend", icon: "nodejs" },
+        { name: "Python", category: "AI / Core", icon: "python" },
+        { name: "React Native", category: "Mobile", icon: "react-native" },
+        { name: "Tailwind CSS", category: "Frontend", icon: "tailwind" },
+        { name: "MongoDB", category: "Database", icon: "mongodb" },
+        { name: "MySQL / SQL", category: "Database", icon: "mysql" },
+        { name: "Git & GitHub", category: "DevOps", icon: "git" },
+        { name: "Next.js", category: "Framework", icon: "nextjs" },
+        { name: "Vite", category: "Tooling", icon: "vite" }
     ];
 
     return (
@@ -198,7 +197,7 @@ const About = () => {
                 <div className="tool-row reveal">
                     {techStack.map((tech) => (
                         <div key={tech.name} className="tool-item">
-                            <img src={`${DEVICON}/${tech.icon}.svg`} alt="" width="44" height="44" loading="lazy" className="tool-logo" />
+                            <PuffyIcon name={tech.icon} size={68} className="tool-logo" />
                             <span className="tool-name">{tech.name}</span>
                             <span className="tool-cat">{tech.category}</span>
                         </div>

@@ -3,8 +3,7 @@ import devendraPortrait from '../assets/devendra_portrait-1x.webp';
 import devendraPortrait2x from '../assets/devendra_portrait-2x.webp';
 import { celebrate } from '../lib/celebrate';
 import { projects } from '../data/projects';
-import { Download } from 'lucide-react';
-import { LaurelWreath } from './Icons';
+import { LaurelWreath, PuffyIcon } from './Icons';
 import PuffyName from './PuffyName';
 import robot1x from '../assets/robot-1x.webp';
 import robot2x from '../assets/robot-2x.webp';
@@ -95,7 +94,7 @@ const HeroSection = ({ onOpenSection }) => {
                             onClick={handleDownloadCV}
                             title="Download Devendra's CV"
                         >
-                            <Download size={15} />
+                            <PuffyIcon name="resume" size={30} className="is-inline" />
                             <span>Resume</span>
                         </a>
                     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import leetcodeIcon from '../assets/leetcode_icon.webp';
 import { ArrowUp, ArrowRight } from 'lucide-react';
-import { Github, Linkedin } from './Icons';
+import { PuffyIcon } from './Icons';
 import PuffyName from './PuffyName';
 import { Sparkle } from './Doodles';
 
@@ -48,21 +48,21 @@ const Footer = ({ onOpenSection }) => {
                         href="https://github.com/Mishra-coder"
                         target="_blank"
                         rel="noreferrer"
-                        className="clay-icon is-dark is-sm"
+                        className="puffy-link"
                         title="GitHub"
                         aria-label="GitHub"
                     >
-                        <Github size={17} />
+                        <PuffyIcon name="github" size={52} />
                     </a>
                     <a
                         href="https://linkedin.com/in/devendra-mishra-b9613b339/"
                         target="_blank"
                         rel="noreferrer"
-                        className="clay-icon is-linkedin is-sm"
+                        className="puffy-link"
                         title="LinkedIn"
                         aria-label="LinkedIn"
                     >
-                        <Linkedin size={17} />
+                        <PuffyIcon name="linkedin" size={52} />
                     </a>
                     <a
                         href="https://leetcode.com/u/Devendra870/"

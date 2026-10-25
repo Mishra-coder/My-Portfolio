@@ -10,7 +10,7 @@ import {
     MessageSquare,
     ExternalLink
 } from 'lucide-react';
-import { Github, Linkedin } from './Icons';
+import { PuffyIcon } from './Icons';
 import SectionHead from './SectionHead';
 
 
@@ -77,18 +77,16 @@ const Contact = () => {
         {
             title: "LinkedIn",
             value: "devendra-mishra",
-            icon: Linkedin,
+            puffy: "linkedin",
             actionText: "Connect",
-            link: "https://www.linkedin.com/in/devendra-mishra-b9613b339/",
-            tone: "is-linkedin"
+            link: "https://www.linkedin.com/in/devendra-mishra-b9613b339/"
         },
         {
             title: "GitHub",
             value: "@Mishra-coder",
-            icon: Github,
+            puffy: "github",
             actionText: "Explore Repos",
-            link: "https://github.com/Mishra-coder",
-            tone: "is-dark"
+            link: "https://github.com/Mishra-coder"
         },
         {
             title: "Location",
@@ -130,7 +128,11 @@ const Contact = () => {
                         const IconComp = item.icon;
                         const inner = (
                             <>
-                                <span className={`clay-icon is-xl ${item.tone}`}><IconComp size={30} /></span>
+                                {item.puffy ? (
+                                    <PuffyIcon name={item.puffy} size={64} className="channel-puffy" />
+                                ) : (
+                                    <span className={`clay-icon is-xl ${item.tone}`}><IconComp size={30} /></span>
+                                )}
                                 <span className="channel-title">{item.title}</span>
                                 <span className="channel-value">{item.value}</span>
                                 <span className="channel-action">

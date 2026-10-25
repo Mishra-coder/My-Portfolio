@@ -230,6 +230,43 @@ a.mono-tag.is-blue:hover { background: var(--blue); color: #fff; }
 .clay-icon img { width: 20px; height: 20px; }
 a.clay-icon:hover { transform: translateY(-3px) rotate(-6deg) scale(1.06); }
 
+/* Puffy 3D icons: the padded tile is baked into each transparent image,
+   so no background here — just size, a soft shadow and a springy hover. */
+.puffy-icon {
+  --icon: 64px;
+  --fit: 1;
+  flex: none;
+  display: block;
+  width: calc(var(--icon) * var(--fit));
+  height: calc(var(--icon) * var(--fit));
+  /* Keep the layout box at --icon so labels line up whatever the optical trim. */
+  margin: calc(var(--icon) * (1 - var(--fit)) / 2);
+  object-fit: contain;
+  filter: drop-shadow(2px 5px 4px rgba(52, 42, 28, 0.14));
+  transition: transform 0.45s cubic-bezier(0.2, 1.5, 0.3, 1);
+  -webkit-user-drag: none;
+  user-select: none;
+}
+/* Optical balance: these silhouettes read heavier than the rest. */
+.puffy-icon[data-icon="nextjs"], .puffy-icon[data-icon="git"] { --fit: 0.88; }
+.puffy-icon[data-icon="python"], .puffy-icon[data-icon="github"], .puffy-icon[data-icon="linkedin"] { --fit: 0.92; }
+.puffy-icon[data-icon="tailwind"], .puffy-icon[data-icon="mysql"] { --fit: 1.06; }
+.puffy-icon.is-inline { --icon: 30px; margin: -8px 0; filter: drop-shadow(1px 3px 2px rgba(52, 42, 28, 0.18)); }
+.btn-cream.is-small .puffy-icon.is-inline { --icon: 26px; }
+
+.puffy-link { display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; border-radius: 14px; }
+.tool-item:hover .puffy-icon,
+a.channel:hover .puffy-icon,
+.puffy-link:hover .puffy-icon,
+.puffy-link:focus-visible .puffy-icon { transform: translateY(-7px) rotate(6deg) scale(1.12); }
+a:hover > .puffy-icon.is-inline { transform: translateY(-3px) rotate(-6deg) scale(1.12); }
+/* Touch: a brief press-squish instead of a hover that sticks after tapping. */
+@media (hover: none) {
+  .tool-item:hover .puffy-icon, a.channel:hover .puffy-icon, .puffy-link:hover .puffy-icon,
+  a:hover > .puffy-icon.is-inline { transform: none; }
+  .tool-item:active .puffy-icon, a.channel:active .puffy-icon, .puffy-link:active .puffy-icon { transform: scale(0.94); transition-duration: 0.15s; }
+}
+
 /* Cards */
 .soft-card {
   position: relative;
@@ -396,7 +433,8 @@ a.clay-icon:hover { transform: translateY(-3px) rotate(-6deg) scale(1.06); }
 .drawer-footer { margin-top: auto; display: grid; gap: 16px; }
 .drawer-download { width: 100%; }
 .drawer-socials { display: flex; gap: 10px; justify-content: center; }
-.drawer-socials a { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--grad-pill); box-shadow: var(--shadow-soft); }
+.drawer-socials a:not(.puffy-link) { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--grad-pill); box-shadow: var(--shadow-soft); }
+.drawer-socials { align-items: center; }
 
 .live-dot {
   position: relative; flex: none;
@@ -776,12 +814,7 @@ a.clay-icon:hover { transform: translateY(-3px) rotate(-6deg) scale(1.06); }
 
 .tool-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 28px 12px; }
 .tool-item { display: grid; justify-items: center; gap: 8px; text-align: center; }
-.tool-logo {
-  width: 44px; height: 44px; object-fit: contain;
-  filter: drop-shadow(0 8px 8px rgba(40, 30, 20, 0.22));
-  transition: transform 0.4s var(--spring);
-}
-.tool-item:hover .tool-logo { transform: translateY(-6px) rotate(-8deg) scale(1.1); }
+.tool-logo { --icon: 68px; }
 .tool-name { font-family: var(--ff-mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); }
 .tool-cat { font-size: 12px; color: var(--muted); margin-top: -6px; }
 
@@ -889,6 +922,7 @@ a.clay-icon:hover { transform: translateY(-3px) rotate(-6deg) scale(1.06); }
 .channel-row { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(20px, 4vw, 44px); margin: clamp(40px, 6vw, 64px) 0; }
 .channel { display: grid; justify-items: center; gap: 6px; width: 170px; text-align: center; }
 .channel .clay-icon { margin-bottom: 8px; transform: rotate(-4deg); }
+.channel-puffy { --icon: 80px; margin-bottom: 4px; }
 .channel:nth-child(even) .clay-icon { transform: rotate(5deg); }
 a.channel:hover .clay-icon { transform: translateY(-6px) rotate(-10deg) scale(1.08); }
 .channel-title { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); }
@@ -940,7 +974,8 @@ a.channel:hover .clay-icon { transform: translateY(-6px) rotate(-10deg) scale(1.
   padding: 18px 0 44px;
 }
 .footer-copy { color: var(--muted); font-size: 14px; }
-.footer-socials { display: flex; gap: 12px; }
+.footer-socials { display: flex; align-items: center; gap: 12px; }
+.footer-socials .puffy-icon { --icon: 52px; }
 .thanks-btn {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 26px; border-radius: 16px;
@@ -994,6 +1029,10 @@ a.channel:hover .clay-icon { transform: translateY(-6px) rotate(-10deg) scale(1.
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .chip-track { animation: none; }
   .reveal { opacity: 1; transform: none; }
+  .puffy-icon { transition: none; }
+  .tool-item:hover .puffy-icon, a.channel:hover .puffy-icon, .puffy-link:hover .puffy-icon,
+  .puffy-link:focus-visible .puffy-icon, a:hover > .puffy-icon.is-inline,
+  .tool-item:active .puffy-icon, a.channel:active .puffy-icon, .puffy-link:active .puffy-icon { transform: none; }
 }
 
 /* --------------------------------------------------------------------------
@@ -1051,4 +1090,7 @@ a.channel:hover .clay-icon { transform: translateY(-6px) rotate(-10deg) scale(1.
   .fan-0 { --x: -200px; --y: 40px; } .fan-1 { --x: -100px; --y: 10px; } .fan-3 { --x: 100px; --y: 10px; } .fan-4 { --x: 200px; --y: 40px; }
   .stamp-label { font-size: 13px; }
   .channel { width: 140px; }
+  .tool-logo { --icon: 58px; }
+  .channel-puffy { --icon: 68px; }
+  .footer-socials .puffy-icon, .drawer-socials .puffy-icon { --icon: 48px; }
 }

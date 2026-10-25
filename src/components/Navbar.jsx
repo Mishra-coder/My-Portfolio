@@ -3,10 +3,9 @@ import devendraPortrait from '../assets/devendra_avatar.webp';
 import {
     X,
     ArrowUpRight,
-    Download,
     Mail
 } from 'lucide-react';
-import { Github, Linkedin } from './Icons';
+import { PuffyIcon } from './Icons';
 import { celebrate } from '../lib/celebrate';
 
 const Navbar = ({ onOpenSection, active }) => {
@@ -141,16 +140,16 @@ const Navbar = ({ onOpenSection, active }) => {
                         className="btn-dark drawer-download"
                         onClick={handleDownloadCV}
                     >
-                        <Download size={16} />
+                        <PuffyIcon name="resume" size={30} className="is-inline" />
                         <span>Download Full Resume (PDF)</span>
                     </a>
 
                     <div className="drawer-socials">
-                        <a href="https://github.com/Mishra-coder" target="_blank" rel="noreferrer" title="GitHub" aria-label="GitHub">
-                            <Github size={18} />
+                        <a href="https://github.com/Mishra-coder" target="_blank" rel="noreferrer" title="GitHub" aria-label="GitHub" className="puffy-link">
+                            <PuffyIcon name="github" size={52} />
                         </a>
-                        <a href="https://linkedin.com/in/devendra-mishra-b9613b339/" target="_blank" rel="noreferrer" title="LinkedIn" aria-label="LinkedIn">
-                            <Linkedin size={18} />
+                        <a href="https://linkedin.com/in/devendra-mishra-b9613b339/" target="_blank" rel="noreferrer" title="LinkedIn" aria-label="LinkedIn" className="puffy-link">
+                            <PuffyIcon name="linkedin" size={52} />
                         </a>
                         <a href="mailto:devendramishra870@gmail.com" title="Email Devendra" aria-label="Email Devendra">
                             <Mail size={18} />
