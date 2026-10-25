@@ -1,5 +1,4 @@
 import React from 'react';
-import leetcodeIcon from '../assets/leetcode_icon.webp';
 import { ArrowUp, ArrowRight } from 'lucide-react';
 import { PuffyIcon } from './Icons';
 import PuffyName from './PuffyName';
@@ -68,10 +67,11 @@ const Footer = ({ onOpenSection }) => {
                         href="https://leetcode.com/u/Devendra870/"
                         target="_blank"
                         rel="noreferrer"
-                        className="clay-icon is-paper is-sm"
+                        className="puffy-link"
                         title="LeetCode @Devendra870"
+                        aria-label="LeetCode"
                     >
-                        <img src={leetcodeIcon} alt="LeetCode" width="18" height="18" />
+                        <PuffyIcon name="leetcode" size={52} />
                     </a>
                 </div>
 

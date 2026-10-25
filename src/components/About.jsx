@@ -3,7 +3,6 @@ import AiOrb from './AiOrb';
 import GithubGraph from './GithubGraph';
 import SectionHead from './SectionHead';
 import { PuffyIcon } from './Icons';
-import leetcodeIcon from '../assets/leetcode_icon.webp';
 import mobileDevIcon from '../assets/mobile_dev_icon_new.webp';
 import aiIcon from '../assets/ai_icon_v2.webp';
 import {
@@ -228,7 +227,7 @@ const About = () => {
                             rel="noreferrer"
                             className="btn-cream"
                         >
-                            <img src={leetcodeIcon} alt="" width="18" height="18" />
+                            <PuffyIcon name="leetcode" size={30} className="is-inline" />
                             <span>LeetCode Profile</span>
                             <ArrowUpRight size={16} />
                         </a>
