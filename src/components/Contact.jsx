@@ -3,11 +3,9 @@ import { celebrate } from '../lib/celebrate';
 import {
     Mail,
     Send,
-    MapPin,
     CheckCircle2,
     Copy,
     Check,
-    MessageSquare,
     ExternalLink
 } from 'lucide-react';
 import { PuffyIcon } from './Icons';
@@ -91,10 +89,9 @@ const Contact = () => {
         {
             title: "Location",
             value: "Pune, Maharashtra, India",
-            icon: MapPin,
+            puffy: "location",
             actionText: "NST Campus",
-            link: null,
-            tone: "is-orange"
+            link: null
         }
     ];
 
@@ -154,7 +151,7 @@ const Contact = () => {
                 {/* Contact Form */}
                 <div className="stamp-card form-card reveal">
                     <div className="form-head">
-                        <span className="clay-icon is-blue"><MessageSquare size={20} /></span>
+                        <PuffyIcon name="message" size={56} />
                         <div>
                             <h3 className="card-title is-big">Send a Direct Message</h3>
                             <p className="body-text is-small">I typically respond within 24 hours.</p>
