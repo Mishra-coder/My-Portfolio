@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { Github } from './Icons';
 import { projects } from '../data/projects';
+import SectionHead from './SectionHead';
 
 
 const Portfolio = () => {
@@ -32,164 +33,141 @@ const Portfolio = () => {
     }, [selectedCategory, searchQuery]);
 
     return (
-        <article id="projects" className="portfolio active editorial-section-card" data-page="portfolio">
-            <header className="page-header">
-                <div className="badge-pill">
-                    <Sparkles size={14} />
-                    <span>Engineered with passion</span>
-                </div>
-                <h2 className="h2 article-title">Featured Projects</h2>
-            </header>
+        <section id="projects" className="section">
+            <div className="container">
+                <SectionHead num="01" label="Featured portfolio" title="Featured Projects" intro="Engineered with passion" />
 
-            {/* Filter Controls & Search */}
-            <div className="portfolio-controls">
-                <div className="filter-pill-group">
-                    {categories.map((cat) => (
-                        <button
-                            key={cat}
-                            type="button"
-                            className={`filter-btn ${selectedCategory === cat ? 'active' : ''}`}
-                            onClick={() => setSelectedCategory(cat)}
-                        >
-                            {cat === 'All' && <Globe size={14} />}
-                            {cat === 'Full Stack' && <Layers size={14} />}
-                            {cat === 'Mobile' && <Smartphone size={14} />}
-                            {cat === 'Frontend' && <Sparkles size={14} />}
-                            <span>{cat}</span>
-                        </button>
-                    ))}
+                {/* Filter Controls & Search */}
+                <div className="work-controls reveal">
+                    <div className="toggle-pill" role="group" aria-label="Filter projects">
+                        {categories.map((cat) => (
+                            <button
+                                key={cat}
+                                type="button"
+                                className={`toggle-btn ${selectedCategory === cat ? 'is-active' : ''}`}
+                                aria-pressed={selectedCategory === cat}
+                                onClick={() => setSelectedCategory(cat)}
+                            >
+                                {cat === 'All' && <Globe size={14} />}
+                                {cat === 'Full Stack' && <Layers size={14} />}
+                                {cat === 'Mobile' && <Smartphone size={14} />}
+                                {cat === 'Frontend' && <Sparkles size={14} />}
+                                <span>{cat}</span>
+                            </button>
+                        ))}
+                    </div>
+
+                    <label className="search-pill">
+                        <Search size={16} />
+                        <input
+                            type="text"
+                            placeholder="Search projects or tech..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            aria-label="Search projects or tech"
+                        />
+                    </label>
                 </div>
 
-                <div className="project-search-box">
-                    <Search size={16} className="search-icon" />
-                    <input
-                        type="text"
-                        placeholder="Search projects or tech..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="project-search-input"
-                    />
-                </div>
-            </div>
+                {/* Project rows */}
+                {/* Keyed by tab so every switch replays the arrive animation */}
+                <div className="work-list" key={selectedCategory}>
+                    {filteredProjects.length > 0 ? (
+                        filteredProjects.map((project, index) => (
+                            <article key={project.title} className="work-row" style={{ '--i': index }}>
+                                <a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="work-media soft-card tilt-3d"
+                                    title="View Live Site"
+                                >
+                                    <img
+                                        src={project.image}
+                                        srcSet={`${project.image} ${project.imageWidth}w, ${project.image2x} ${project.imageWidth * 2}w`}
+                                        sizes="(max-width: 900px) 92vw, 560px"
+                                        width={project.imageWidth}
+                                        height={project.imageHeight}
+                                        alt={project.title}
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                    {project.featured && (
+                                        <span className="featured-badge">Featured</span>
+                                    )}
+                                </a>
 
-            {/* Project Grid */}
-            <section className="projects-grid">
-                {filteredProjects.length > 0 ? (
-                    filteredProjects.map((project, index) => (
-                        <div key={index} className="project-card-3d tilt-3d">
-                            <div className="project-img-container">
-                                <img
-                                    src={project.image}
-                                    srcSet={`${project.image} ${project.imageWidth}w, ${project.image2x} ${project.imageWidth * 2}w`}
-                                    sizes="(max-width: 760px) 100vw, (max-width: 900px) 90vw, 600px"
-                                    width={project.imageWidth}
-                                    height={project.imageHeight}
-                                    alt={project.title}
-                                    className="project-img"
-                                    loading="lazy"
-                                    decoding="async"
-                                />
-                                <div className="project-overlay">
-                                    <div className="overlay-actions">
-                                        {project.link && (
+                                <div className="work-info">
+                                    <div className="work-meta">
+                                        <span className="mono-tag">{project.category}</span>
+                                        <span className="mono-tag is-muted">{project.kind}</span>
+                                        {project.preview && (
                                             <a
-                                                href={project.link}
+                                                href={project.preview}
                                                 target="_blank"
                                                 rel="noreferrer"
-                                                className="overlay-btn primary"
-                                                title="View Live Site"
+                                                className="mono-tag is-blue"
+                                                title="Open Mobile Demo Preview"
                                             >
-                                                <ExternalLink size={18} />
-                                                <span>Live Demo</span>
+                                                <Eye size={12} />
+                                                <span>App Preview</span>
                                             </a>
                                         )}
+                                    </div>
+
+                                    <h3 className="work-title">{project.title}</h3>
+                                    <p className="work-subtitle">{project.subtitle}</p>
+                                    <p className="work-desc">{project.description}</p>
+
+                                    <div className="chip-row">
+                                        {project.tags.map((tag) => (
+                                            <span key={tag} className="chip is-small">
+                                                <span className="chip-plus">+</span>
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <div className="work-links">
+                                        <a
+                                            href={project.link}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="btn-dark is-small"
+                                        >
+                                            <span>Visit Application</span>
+                                            <ExternalLink size={14} />
+                                        </a>
                                         {project.github && (
                                             <a
                                                 href={project.github}
                                                 target="_blank"
                                                 rel="noreferrer"
-                                                className="overlay-btn"
-                                                title="View Source Code"
+                                                className="btn-cream is-small"
                                             >
-                                                <Github size={18} />
-                                                <span>Code</span>
+                                                <Github size={15} />
+                                                <span>Repository</span>
                                             </a>
                                         )}
                                     </div>
                                 </div>
-                                {project.featured && (
-                                    <span className="featured-badge">Featured</span>
-                                )}
-                            </div>
-
-                            <div className="project-info-body">
-                                <div className="project-cat-row">
-                                    <span className="project-category-pill">{project.category}</span>
-                                    {project.preview && (
-                                        <a
-                                            href={project.preview}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="mobile-preview-badge"
-                                            title="Open Mobile Demo Preview"
-                                        >
-                                            <Eye size={12} />
-                                            <span>App Preview</span>
-                                        </a>
-                                    )}
-                                </div>
-
-                                <h3 className="project-main-title">{project.title}</h3>
-                                <p className="project-subtitle-text">{project.subtitle}</p>
-                                <p className="project-desc-text">{project.description}</p>
-
-                                <div className="project-tag-row">
-                                    {project.tags.map((tag, tagIdx) => (
-                                        <span key={tagIdx} className="project-tech-tag">
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-
-                                <div className="project-card-footer">
-                                    <a
-                                        href={project.link}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="card-action-link live"
-                                    >
-                                        <span>Visit Application</span>
-                                        <ExternalLink size={14} />
-                                    </a>
-                                    {project.github && (
-                                        <a
-                                            href={project.github}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="card-action-link github"
-                                        >
-                                            <Github size={15} />
-                                            <span>Repository</span>
-                                        </a>
-                                    )}
-                                </div>
-                            </div>
+                            </article>
+                        ))
+                    ) : (
+                        <div className="empty-state soft-card">
+                            <p>No projects match your filter or search query.</p>
+                            <button
+                                type="button"
+                                className="btn-dark is-small"
+                                onClick={() => { setSelectedCategory('All'); setSearchQuery(''); }}
+                            >
+                                Reset Filters
+                            </button>
                         </div>
-                    ))
-                ) : (
-                    <div className="no-projects-found">
-                        <p>No projects match your filter or search query.</p>
-                        <button
-                            type="button"
-                            className="reset-filter-btn"
-                            onClick={() => { setSelectedCategory('All'); setSearchQuery(''); }}
-                        >
-                            Reset Filters
-                        </button>
-                    </div>
-                )}
-            </section>
-        </article>
+                    )}
+                </div>
+            </div>
+        </section>
     );
 };
 

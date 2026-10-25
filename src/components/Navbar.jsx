@@ -4,19 +4,18 @@ import {
     X,
     ArrowUpRight,
     Download,
-    Mail,
-    Award
+    Mail
 } from 'lucide-react';
-import { LaurelWreath, Github, Linkedin } from './Icons';
+import { Github, Linkedin } from './Icons';
 import { celebrate } from '../lib/celebrate';
 
-const Navbar = ({ onOpenSection, solid = false }) => {
+const Navbar = ({ onOpenSection, active }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
     const navLinks = [
-        { num: '01', name: 'About', id: 'about' },
-        { num: '02', name: 'Projects', id: 'projects' },
+        { num: '01', name: 'Projects', id: 'projects' },
+        { num: '02', name: 'About', id: 'about' },
         { num: '03', name: 'Skills', id: 'skills' },
         { num: '04', name: 'Achievements', id: 'achievements' },
         { num: '05', name: 'Resume', id: 'resume' },
@@ -27,101 +26,89 @@ const Navbar = ({ onOpenSection, solid = false }) => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 40);
         };
+        handleScroll();
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     // Prevent body scroll when drawer is open
     useEffect(() => {
-        if (drawerOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
+        document.body.style.overflow = drawerOpen ? 'hidden' : '';
     }, [drawerOpen]);
 
     const handleBrandClick = (e) => {
         e.preventDefault();
         setDrawerOpen(false);
         onOpenSection?.('hero');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleNavClick = (e, id) => {
         e.preventDefault();
         setDrawerOpen(false);
-        if (onOpenSection) {
-            onOpenSection(id);
-        }
+        onOpenSection?.(id);
     };
 
     const handleDownloadCV = () => celebrate({ particleCount: 80, y: 0.5 });
 
     return (
         <>
-            {/* Top Navigation Bar matching reference design */}
-            <header className={`ref-header-bar ${scrolled || solid ? 'is-scrolled' : ''}`}>
-                <div className="ref-header-inner">
-                    {/* Brand Name in elegant Serif Italic */}
-                    <a
-                        href="/"
-                        className="ref-brand-title"
-                        onClick={handleBrandClick}
-                    >
-                        Devendra Mishra
+            <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
+                <div className="site-header-inner">
+                    <a href="/" className="brand" onClick={handleBrandClick}>
+                        <img src={devendraPortrait} alt="" width="40" height="40" className="brand-avatar" />
+                        <span className="brand-name">Devendra Mishra</span>
                     </a>
 
-                    {/* Center: Laurel Wreath Award Badge with REAL credentials */}
-                    <div className="ref-award-badge" title="Hacktoberfest 2024 Global Contributor & NST Pune Scholar">
-                        <div className="ref-laurel-icon-wrapper" aria-hidden="true">
-                            <LaurelWreath size={22} className="ref-laurel-svg" />
-                            <span className="ref-laurel-center-text">Global<br />Contributor</span>
-                        </div>
-                        <span className="ref-award-title">Hacktoberfest '24 • NST Pune</span>
-                    </div>
+                    <nav className="nav-pill" aria-label="Sections">
+                        {navLinks.map((link) => (
+                            <a
+                                key={link.id}
+                                href={`/${link.id}`}
+                                className={`nav-pill-link ${active === link.id ? 'is-active' : ''}`}
+                                aria-current={active === link.id ? 'true' : undefined}
+                                onClick={(e) => handleNavClick(e, link.id)}
+                            >
+                                {link.name}
+                            </a>
+                        ))}
+                    </nav>
 
-                    {/* Right: Sleek Circular Hamburger Button */}
-                    <div className="ref-header-actions">
-                        {/* Quick desktop shortcuts if scrolled */}
-                        <div className={`ref-quick-nav ${scrolled ? 'visible' : ''}`}>
-                            <button type="button" className="ref-quick-btn" onClick={() => onOpenSection?.('projects')}>Projects</button>
-                            <button type="button" className="ref-quick-btn" onClick={() => onOpenSection?.('skills')}>Skills</button>
-                            <button type="button" className="ref-quick-btn" onClick={() => onOpenSection?.('about')}>About</button>
-                            <button type="button" className="ref-quick-btn" onClick={() => onOpenSection?.('contact')}>Contact</button>
-                        </div>
-
+                    <div className="header-actions">
+                        <a href="/contact" className="btn-dark header-cta" onClick={(e) => handleNavClick(e, 'contact')}>
+                            Get in Touch
+                        </a>
                         <button
                             type="button"
-                            className="ref-menu-circle-btn"
+                            className="menu-btn"
                             onClick={() => setDrawerOpen(!drawerOpen)}
                             aria-label="Toggle navigation menu"
                             aria-expanded={drawerOpen}
                         >
-                            <span className="menu-bar bar-1"></span>
-                            <span className="menu-bar bar-2"></span>
-                            <span className="menu-bar bar-3"></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </button>
                     </div>
                 </div>
             </header>
 
-            {/* Slide-over Editorial Navigation Drawer */}
-            <div className={`ref-drawer-backdrop ${drawerOpen ? 'open' : ''}`} onClick={() => setDrawerOpen(false)} />
-            
-            <aside className={`ref-drawer-panel ${drawerOpen ? 'open' : ''}`} inert={!drawerOpen}>
-                <div className="ref-drawer-header">
-                    <div className="ref-drawer-profile">
-                        <img src={devendraPortrait} alt="Devendra Mishra" className="ref-drawer-avatar" />
+            {/* Slide-over navigation drawer (mobile) */}
+            <div className={`drawer-backdrop ${drawerOpen ? 'open' : ''}`} onClick={() => setDrawerOpen(false)} />
+
+            <aside className={`drawer ${drawerOpen ? 'open' : ''}`} inert={!drawerOpen}>
+                <div className="drawer-header">
+                    <div className="drawer-profile">
+                        <img src={devendraPortrait} alt="Devendra Mishra" className="drawer-avatar" />
                         <div>
-                            <span className="ref-drawer-name">Devendra Mishra</span>
-                            <span className="ref-drawer-status">
-                                <span className="ref-dot-pulse"></span> Available for Hire
+                            <span className="drawer-name">Devendra Mishra</span>
+                            <span className="drawer-status">
+                                <span className="live-dot"></span> Available for Hire
                             </span>
                         </div>
                     </div>
                     <button
                         type="button"
-                        className="ref-drawer-close-btn"
+                        className="drawer-close"
                         onClick={() => setDrawerOpen(false)}
                         aria-label="Close menu"
                     >
@@ -129,45 +116,43 @@ const Navbar = ({ onOpenSection, solid = false }) => {
                     </button>
                 </div>
 
-                <nav className="ref-drawer-nav">
-                    <ul className="ref-drawer-links">
+                <nav>
+                    <ul className="drawer-links">
                         {navLinks.map((link) => (
-                            <li key={link.id} className="ref-drawer-item">
-                                <button
-                                    type="button"
-                                    className="ref-drawer-link-btn"
+                            <li key={link.id}>
+                                <a
+                                    href={`/${link.id}`}
+                                    className={`drawer-link ${active === link.id ? 'is-active' : ''}`}
                                     onClick={(e) => handleNavClick(e, link.id)}
                                 >
-                                    <span className="ref-link-num">{link.num}</span>
-                                    <span className="ref-link-name">{link.name}</span>
-                                    <ArrowUpRight size={18} className="ref-link-arrow" />
-                                </button>
+                                    <span className="drawer-link-num">{link.num}</span>
+                                    <span className="drawer-link-name">{link.name}</span>
+                                    <ArrowUpRight size={18} />
+                                </a>
                             </li>
                         ))}
                     </ul>
                 </nav>
 
-                <div className="ref-drawer-footer">
-                    <div className="ref-drawer-cv-cta">
-                        <a
-                            href="/DEVENDRA_RESUME.pdf"
-                            download="Devendra_Mishra_Resume.pdf"
-                            className="ref-drawer-download-btn"
-                            onClick={handleDownloadCV}
-                        >
-                            <Download size={16} />
-                            <span>Download Full Resume (PDF)</span>
-                        </a>
-                    </div>
+                <div className="drawer-footer">
+                    <a
+                        href="/DEVENDRA_RESUME.pdf"
+                        download="Devendra_Mishra_Resume.pdf"
+                        className="btn-dark drawer-download"
+                        onClick={handleDownloadCV}
+                    >
+                        <Download size={16} />
+                        <span>Download Full Resume (PDF)</span>
+                    </a>
 
-                    <div className="ref-drawer-socials">
-                        <a href="https://github.com/Mishra-coder" target="_blank" rel="noreferrer" title="GitHub">
+                    <div className="drawer-socials">
+                        <a href="https://github.com/Mishra-coder" target="_blank" rel="noreferrer" title="GitHub" aria-label="GitHub">
                             <Github size={18} />
                         </a>
-                        <a href="https://linkedin.com/in/devendra-mishra-b9613b339/" target="_blank" rel="noreferrer" title="LinkedIn">
+                        <a href="https://linkedin.com/in/devendra-mishra-b9613b339/" target="_blank" rel="noreferrer" title="LinkedIn" aria-label="LinkedIn">
                             <Linkedin size={18} />
                         </a>
-                        <a href="mailto:devendramishra870@gmail.com" title="Email Devendra">
+                        <a href="mailto:devendramishra870@gmail.com" title="Email Devendra" aria-label="Email Devendra">
                             <Mail size={18} />
                         </a>
                     </div>

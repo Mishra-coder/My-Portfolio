@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const MAX_DEG = 8;
+const MAX_DEG = 4;
 
 /**
  * Gives every `.tilt-3d` element a realistic 3D perspective tilt with
