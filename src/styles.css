@@ -533,7 +533,6 @@ a:hover > .puffy-icon.is-inline { transform: translateY(-3px) rotate(-6deg) scal
   will-change: transform;
 }
 .prop-sparkle { --depth: 16px; width: clamp(26px, 3vw, 38px); right: 18%; top: 15%; color: var(--blue); animation: twinkle 3.2s ease-in-out 2.2s infinite, pop-in 0.5s var(--spring) 1.65s both; }
-.prop-cone { --depth: 34px; width: clamp(70px, 7.5vw, 104px); right: 14%; top: 60%; filter: drop-shadow(0 18px 14px rgba(120, 50, 10, 0.3)); animation: float 7s ease-in-out -2s infinite, pop-in 0.6s var(--spring) 1s both; }
 .prop-code {
   --depth: 24px;
   display: grid; place-items: center;
@@ -1060,7 +1059,6 @@ a.channel:hover .clay-icon { transform: translateY(-6px) rotate(-10deg) scale(1.
   .achievement-media { min-height: 200px; aspect-ratio: 16 / 9; }
   .prop-sparkle { right: 8%; top: 13%; }
   .prop-bomb { right: 5%; top: 40%; }
-  .prop-cone { right: 4%; top: 60%; }
   .fan-0 { --x: -290px; } .fan-1 { --x: -150px; } .fan-3 { --x: 150px; } .fan-4 { --x: 290px; }
 }
 
@@ -1080,7 +1078,6 @@ a.channel:hover .clay-icon { transform: translateY(-6px) rotate(-10deg) scale(1.
   .hero-name { margin-top: 30px; }
   .prop-sparkle { width: 24px; left: 6%; right: auto; top: 96px; }
   .prop-bomb { width: 46px; right: 10%; top: 568px; bottom: auto; }
-  .prop-cone { width: 52px; left: 9%; right: auto; top: 562px; bottom: auto; }
   .doodle-arcs-l, .doodle-arcs-r { display: none; }
   .prop-code { display: none; }
   .fan-robot { width: 62px; left: calc(50% + 22px); bottom: 162px; }

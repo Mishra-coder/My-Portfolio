@@ -52,39 +52,6 @@ export const ScallopBadge = ({ children }) => (
     </span>
 );
 
-export const Cone = (props) => {
-    const id = useId();
-    return (
-        <svg viewBox="0 0 120 140" aria-hidden="true" {...props}>
-            <defs>
-                <linearGradient id={`${id}b`} x1="0" x2="1">
-                    <stop offset="0" stopColor="#ffb27a" />
-                    <stop offset=".35" stopColor="#ff7a2e" />
-                    <stop offset=".75" stopColor="#ea580c" />
-                    <stop offset="1" stopColor="#b8410d" />
-                </linearGradient>
-                <linearGradient id={`${id}s`} x1="0" x2="1">
-                    <stop offset="0" stopColor="#ffffff" />
-                    <stop offset=".6" stopColor="#f1ece4" />
-                    <stop offset="1" stopColor="#c9c0b4" />
-                </linearGradient>
-                <linearGradient id={`${id}f`} x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0" stopColor="#f26a22" />
-                    <stop offset="1" stopColor="#a8380a" />
-                </linearGradient>
-                <clipPath id={`${id}c`}><path d="M51 9 Q60 2 69 9 L99 118 H21 Z" /></clipPath>
-            </defs>
-            <rect x="4" y="112" width="112" height="22" rx="9" fill={`url(#${id}f)`} />
-            <path d="M51 9 Q60 2 69 9 L99 118 H21 Z" fill={`url(#${id}b)`} />
-            <g clipPath={`url(#${id}c)`}>
-                <rect x="0" y="40" width="120" height="15" fill={`url(#${id}s)`} />
-                <rect x="0" y="76" width="120" height="17" fill={`url(#${id}s)`} />
-            </g>
-            <path d="M54 14 Q50 60 36 112" stroke="#fff" strokeOpacity=".45" strokeWidth="4" strokeLinecap="round" fill="none" />
-        </svg>
-    );
-};
-
 export const Bomb = (props) => {
     const id = useId();
     return (

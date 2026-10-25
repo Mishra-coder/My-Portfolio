@@ -7,7 +7,7 @@ import { LaurelWreath, PuffyIcon } from './Icons';
 import PuffyName from './PuffyName';
 import robot1x from '../assets/robot-1x.webp';
 import robot2x from '../assets/robot-2x.webp';
-import { Crown, Arcs, Sparkle, Smile, Cone, Bomb, Starburst } from './Doodles';
+import { Crown, Arcs, Sparkle, Smile, Bomb, Starburst } from './Doodles';
 
 const HeroSection = ({ onOpenSection }) => {
     const resumePdf = "/DEVENDRA_RESUME.pdf";
@@ -37,7 +37,6 @@ const HeroSection = ({ onOpenSection }) => {
                 {/* Floating props */}
                 <Sparkle className="prop prop-sparkle" />
                 <span className="prop prop-code" aria-hidden="true">&lt;/&gt;</span>
-                <Cone className="prop prop-cone" />
                 <button
                     type="button"
                     className={`prop prop-bomb ${boom ? 'is-boom' : ''}`}
