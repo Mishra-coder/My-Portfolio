@@ -3,7 +3,6 @@ import hacktoberfestBadge from '../assets/hacktoberfest_badge.webp';
 import certificationImg from '../assets/certification_bg.webp';
 import {
     Award,
-    Sparkles,
     ExternalLink,
     GitPullRequest,
     Gamepad2,
@@ -11,6 +10,7 @@ import {
     Trophy,
     Calendar
 } from 'lucide-react';
+import SectionHead from './SectionHead';
 
 const Achievements = () => {
     const achievements = [
@@ -23,8 +23,7 @@ const Achievements = () => {
             icon: GitPullRequest,
             highlight: "100% PR Merge Rate",
             tag: "Open Source",
-            verifyLink: "https://www.holopin.io/@mishracoder#",
-            accentColor: "#f97316"
+            verifyLink: "https://www.holopin.io/@mishracoder#"
         },
         {
             title: "Technical Workshop Leader",
@@ -35,8 +34,7 @@ const Achievements = () => {
             icon: Award,
             highlight: "Peer Mentor & Speaker",
             tag: "Certification",
-            verifyLink: "https://www.coursera.org/account/accomplishments/verify/4YXZL62PUW4W?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=pdf_header_button&utm_product=course",
-            accentColor: "#587D34"
+            verifyLink: "https://www.coursera.org/account/accomplishments/verify/4YXZL62PUW4W?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=pdf_header_button&utm_product=course"
         },
         {
             title: "E-Sports Coordinator & Organizer",
@@ -46,107 +44,91 @@ const Achievements = () => {
             image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800",
             icon: Gamepad2,
             highlight: "Event Leadership",
-            tag: "Event Management",
-            accentColor: "#10b981"
+            tag: "Event Management"
         }
     ];
 
     return (
-        <article id="achievements" className="achievements active editorial-section-card" data-page="achievements">
-            <header className="page-header">
-                <div className="badge-pill">
-                    <Sparkles size={14} />
-                    <span>Recognitions & Milestones</span>
-                </div>
-                <h2 className="h2 article-title">Honors & Achievements</h2>
-            </header>
+        <section id="achievements" className="section">
+            <div className="container">
+                <SectionHead num="05" label="Recognitions & Milestones" title="Honors & Achievements" />
 
-            {/* Top Highlights Banner */}
-            <div className="achievement-highlights-bar tilt-3d">
-                <div className="highlight-item">
-                    <Trophy size={20} color="#fbbf24" />
-                    <div>
-                        <strong>Hacktoberfest Winner</strong>
-                        <p>Verified Open-Source Contributions</p>
+                {/* Top Highlights */}
+                <div className="highlights-grid">
+                    <div className="stamp-card highlight-card reveal">
+                        <span className="clay-icon is-yellow"><Trophy size={20} /></span>
+                        <div>
+                            <strong>Hacktoberfest Winner</strong>
+                            <p>Verified Open-Source Contributions</p>
+                        </div>
+                    </div>
+                    <div className="stamp-card highlight-card reveal">
+                        <span className="clay-icon is-blue"><Award size={20} /></span>
+                        <div>
+                            <strong>Workshop Speaker</strong>
+                            <p>Mentored DSA & Web Dev Sessions</p>
+                        </div>
+                    </div>
+                    <div className="stamp-card highlight-card reveal">
+                        <span className="clay-icon is-green"><Gamepad2 size={20} /></span>
+                        <div>
+                            <strong>Esports Operations</strong>
+                            <p>Campus Tournament Director</p>
+                        </div>
                     </div>
                 </div>
-                <div className="highlight-item">
-                    <Award size={20} color="#84cc16" />
-                    <div>
-                        <strong>Workshop Speaker</strong>
-                        <p>Mentored DSA & Web Dev Sessions</p>
-                    </div>
-                </div>
-                <div className="highlight-item">
-                    <Gamepad2 size={20} color="#10b981" />
-                    <div>
-                        <strong>Esports Operations</strong>
-                        <p>Campus Tournament Director</p>
-                    </div>
-                </div>
-            </div>
 
-            {/* 3D Achievement Cards List */}
-            <div className="achievements-card-list">
-                {achievements.map((item, index) => {
-                    const IconComp = item.icon;
-                    return (
-                        <div key={index} className="achievement-item-3d tilt-3d">
-                            <div className="achievement-img-wrapper">
-                                <img
-                                    src={item.image}
-                                    alt={item.title}
-                                    className="achievement-media"
-                                    loading="lazy"
-                                />
-                                <div className="achievement-tag-badge">
-                                    <IconComp size={13} />
-                                    <span>{item.tag}</span>
-                                </div>
-                            </div>
-
-                            <div className="achievement-details">
-                                <div className="achievement-top-meta">
-                                    <span
-                                        className="achievement-category-pill"
-                                        style={{ color: item.accentColor, borderColor: `${item.accentColor}40` }}
-                                    >
-                                        {item.badge}
+                <div className="achievement-list">
+                    {achievements.map((item) => {
+                        const IconComp = item.icon;
+                        return (
+                            <article key={item.title} className="soft-card achievement-card reveal tilt-3d">
+                                <div className="achievement-media">
+                                    <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
+                                    <span className="mono-tag is-floating">
+                                        <IconComp size={13} />
+                                        <span>{item.tag}</span>
                                     </span>
-                                    <div className="achievement-date">
-                                        <Calendar size={13} />
-                                        <span>{item.date}</span>
+                                </div>
+
+                                <div className="achievement-body">
+                                    <div className="achievement-meta">
+                                        <span className="mono-tag is-blue">{item.badge}</span>
+                                        <span className="mono-caption achievement-date">
+                                            <Calendar size={13} />
+                                            <span>{item.date}</span>
+                                        </span>
+                                    </div>
+
+                                    <h3 className="work-title is-medium">{item.title}</h3>
+                                    <p className="body-text">{item.description}</p>
+
+                                    <div className="achievement-foot">
+                                        <span className="chip is-small">
+                                            <CheckCircle size={14} className="text-blue" />
+                                            <span>{item.highlight}</span>
+                                        </span>
+
+                                        {item.verifyLink && (
+                                            <a
+                                                href={item.verifyLink}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="btn-cream is-small"
+                                                title="Verify Credential"
+                                            >
+                                                <span>Verify Credential</span>
+                                                <ExternalLink size={14} />
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
-
-                                <h3 className="achievement-title-text">{item.title}</h3>
-                                <p className="achievement-desc-text">{item.description}</p>
-
-                                <div className="achievement-footer-row">
-                                    <span className="achievement-metric-tag">
-                                        <CheckCircle size={14} color="#10b981" />
-                                        <span>{item.highlight}</span>
-                                    </span>
-
-                                    {item.verifyLink && (
-                                        <a
-                                            href={item.verifyLink}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="verify-link-btn"
-                                            title="Verify Credential"
-                                        >
-                                            <span>Verify Credential</span>
-                                            <ExternalLink size={14} />
-                                        </a>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
+                            </article>
+                        );
+                    })}
+                </div>
             </div>
-        </article>
+        </section>
     );
 };
 

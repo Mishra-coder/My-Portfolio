@@ -1,75 +1,124 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './App.css';
 import useTilt from './useTilt';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
+import Portfolio from './components/Portfolio';
+import Approach from './components/Approach';
+import About from './components/About';
+import Skills from './components/Skills';
+import Achievements from './components/Achievements';
+import Resume from './components/Resume';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-const SECTIONS = ['about', 'projects', 'skills', 'achievements', 'resume', 'contact'];
+// Page order on the single scrolling page; each id is also a URL (/projects, /about, ...).
+const SECTIONS = ['projects', 'about', 'skills', 'achievements', 'resume', 'contact'];
 
-// Section pages live in their own chunk (they are never above the fold on "/").
-// Loaded manually instead of React.lazy so there is no Suspense reveal delay, and if the
-// chunk is missing (stale page after a redeploy) we reload once instead of failing silently.
-let sectionModule = null;
-const loadSectionPage = () =>
-  sectionModule || (sectionModule = import('./components/SectionPage').catch((err) => {
-    sectionModule = null;
-    if (!sessionStorage.getItem('chunk-reload')) {
-      sessionStorage.setItem('chunk-reload', '1');
-      window.location.reload();
-    }
-    throw err;
-  }));
-
-// "/about" -> "about", anything unknown -> null (home)
+// "/about" -> "about", anything unknown -> null (top of page)
 const sectionFromPath = (pathname) => {
   const seg = pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
   return SECTIONS.includes(seg) ? seg : null;
 };
 
+const scrollToSection = (id, smooth = true) => {
+  const behavior = smooth && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto';
+  if (!id) return window.scrollTo({ top: 0, behavior });
+  document.getElementById(id)?.scrollIntoView({ behavior, block: 'start' });
+};
+
+/** Fade-up reveal for every `.reveal` element as it enters the viewport. */
+function useReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px 12% 0px', threshold: 0 });
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
+/** Pauses the looping animations inside `[data-anim]` blocks while they are off screen. */
+function usePauseOffscreen() {
+  useEffect(() => {
+    if (!('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => entry.target.classList.toggle('is-paused', !entry.isIntersecting));
+    }, { rootMargin: '100px 0px' });
+    document.querySelectorAll('[data-anim]').forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
+/** Which section is currently in the middle of the viewport (drives the nav pill). */
+function useActiveSection() {
+  const [active, setActive] = useState(null);
+  useEffect(() => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActive(entry.target.id === 'hero' ? null : entry.target.id);
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['hero', ...SECTIONS].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+    return () => io.disconnect();
+  }, []);
+  return active;
+}
+
 function App() {
   useTilt();
-  const [section, setSection] = useState(() => sectionFromPath(window.location.pathname));
-  const [SectionPage, setSectionPage] = useState(null);
+  useReveal();
+  usePauseOffscreen();
+  const active = useActiveSection();
 
-  // Fetch the section chunk right after first paint (immediately if we landed on a section URL).
+  // Landing on /about etc. jumps straight to that section.
   useEffect(() => {
-    let alive = true;
-    const load = () => loadSectionPage().then((m) => alive && setSectionPage(() => m.default)).catch(() => {});
-    const id = setTimeout(load, section ? 0 : 200);
-    return () => { alive = false; clearTimeout(id); };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Push a new URL and switch page.
-  const navigate = useCallback((path) => {
-    const next = sectionFromPath(path);
-    const target = next ? `/${next}` : '/';
-    if (window.location.pathname !== target) window.history.pushState(null, '', target);
-    setSection(next);
-    window.scrollTo({ top: 0, behavior: 'instant' in document.documentElement.style ? 'instant' : 'auto' });
+    const initial = sectionFromPath(window.location.pathname);
+    if (initial) requestAnimationFrame(() => scrollToSection(initial, false));
   }, []);
 
   // Browser back / forward
   useEffect(() => {
-    const onPop = () => setSection(sectionFromPath(window.location.pathname));
+    const onPop = () => scrollToSection(sectionFromPath(window.location.pathname));
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
 
   // Navbar / hero / footer call this with a section id ("about", "contact", "hero", ...)
-  const handleOpenSection = (sectionId) => navigate(sectionId === 'hero' ? '/' : `/${sectionId}`);
+  const handleOpenSection = useCallback((sectionId) => {
+    const next = sectionFromPath(`/${sectionId}`);
+    const target = next ? `/${next}` : '/';
+    if (window.location.pathname !== target) window.history.pushState(null, '', target);
+    scrollToSection(next);
+  }, []);
 
   return (
-    <div className={`editorial-app-root ${section ? 'is-section-page' : ''}`}>
-      <Navbar onOpenSection={handleOpenSection} solid={Boolean(section)} />
+    <div className="app-root">
+      <a href="#main" className="skip-link">Skip to content</a>
+      <Navbar onOpenSection={handleOpenSection} active={active} />
 
-      {section ? (
-        SectionPage && <SectionPage activeTab={section} onNavigate={navigate} />
-      ) : (
-        <main id="main">
-          <HeroSection onOpenSection={handleOpenSection} />
-        </main>
-      )}
+      <main id="main">
+        <HeroSection onOpenSection={handleOpenSection} />
+        <Portfolio />
+        <Approach />
+        <About />
+        <Skills />
+        <Achievements />
+        <Resume />
+        <Contact />
+      </main>
 
       <Footer onOpenSection={handleOpenSection} />
     </div>

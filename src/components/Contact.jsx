@@ -3,15 +3,13 @@ import { celebrate } from '../lib/celebrate';
 import {
     Mail,
     Send,
-    MapPin,
-    Sparkles,
     CheckCircle2,
     Copy,
     Check,
-    MessageSquare,
     ExternalLink
 } from 'lucide-react';
-import { Github, Linkedin } from './Icons';
+import { PuffyIcon } from './Icons';
+import SectionHead from './SectionHead';
 
 
 const Contact = () => {
@@ -60,7 +58,7 @@ const Contact = () => {
     };
 
     const copyEmail = () => {
-        navigator.clipboard.writeText('devendramishra495@gmail.com');
+        navigator.clipboard?.writeText('devendramishra495@gmail.com');
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -72,203 +70,187 @@ const Contact = () => {
             icon: Mail,
             actionText: "Send Mail",
             link: "mailto:devendramishra495@gmail.com",
-            accent: "#84cc16"
+            tone: "is-paper"
         },
         {
             title: "LinkedIn",
             value: "devendra-mishra",
-            icon: Linkedin,
+            puffy: "linkedin",
             actionText: "Connect",
-            link: "https://www.linkedin.com/in/devendra-mishra-b9613b339/",
-            accent: "#587D34"
+            link: "https://www.linkedin.com/in/devendra-mishra-b9613b339/"
         },
         {
             title: "GitHub",
             value: "@Mishra-coder",
-            icon: Github,
+            puffy: "github",
             actionText: "Explore Repos",
-            link: "https://github.com/Mishra-coder",
-            accent: "#65a30d"
+            link: "https://github.com/Mishra-coder"
         },
         {
             title: "Location",
             value: "Pune, Maharashtra, India",
-            icon: MapPin,
+            puffy: "location",
             actionText: "NST Campus",
-            link: null,
-            accent: "#10b981"
+            link: null
         }
     ];
 
     return (
-        <article id="contact" className="contact active editorial-section-card" data-page="contact">
-            <header className="page-header">
-                <div className="badge-pill">
-                    <Sparkles size={14} />
-                    <span>Get In Touch</span>
-                </div>
-                <h2 className="h2 article-title">Let's Build Together</h2>
-            </header>
+        <section id="contact" className="section contact-section">
+            <div className="container">
+                <SectionHead num="07" label="Get In Touch" title="Let's Build Together" center />
 
-            {/* Intro Callout Card */}
-            <div className="contact-callout-card tilt-3d">
-                <div className="callout-text">
-                    <h3 className="callout-heading">Have a project, opportunity, or idea?</h3>
-                    <p className="callout-desc">
+                <div className="contact-callout reveal">
+                    <h3 className="hand-kicker is-big">Have a project, opportunity, or idea?</h3>
+                    <p className="body-text">
                         Whether you are looking for a dedicated full-stack developer, an AI/ML enthusiast,
                         or an open-source contributor, my inbox is always open.
                     </p>
+                    <button
+                        type="button"
+                        className={`email-pill ${copied ? 'is-copied' : ''}`}
+                        onClick={copyEmail}
+                        title="Copy Email to Clipboard"
+                        aria-live="polite"
+                    >
+                        {copied ? <Check size={16} /> : <Copy size={16} />}
+                        <span>{copied ? 'Email Copied!' : 'devendramishra495@gmail.com'}</span>
+                        {!copied && <span className="sr-only">Copy Email</span>}
+                    </button>
                 </div>
-                <button
-                    type="button"
-                    className="copy-email-callout-btn"
-                    onClick={copyEmail}
-                    title="Copy Email to Clipboard"
-                >
-                    {copied ? <Check size={16} color="#10b981" /> : <Copy size={16} />}
-                    <span>{copied ? 'Email Copied!' : 'Copy Email'}</span>
-                </button>
-            </div>
 
-            {/* 3D Contact Channel Cards */}
-            <div className="contact-channels-grid">
-                {contactChannels.map((item, idx) => {
-                    const IconComp = item.icon;
-                    return (
-                        <div key={idx} className="contact-channel-card tilt-3d">
-                            <div
-                                className="channel-icon-box"
-                                style={{ color: item.accent, borderColor: `${item.accent}30` }}
-                            >
-                                <IconComp size={22} />
-                            </div>
-                            <div className="channel-info">
+                {/* Contact channels as puffy icons */}
+                <div className="channel-row reveal">
+                    {contactChannels.map((item) => {
+                        const IconComp = item.icon;
+                        const inner = (
+                            <>
+                                {item.puffy ? (
+                                    <PuffyIcon name={item.puffy} size={64} className="channel-puffy" />
+                                ) : (
+                                    <span className={`clay-icon is-xl ${item.tone}`}><IconComp size={30} /></span>
+                                )}
                                 <span className="channel-title">{item.title}</span>
-                                <p className="channel-value">{item.value}</p>
-                            </div>
-                            {item.link ? (
-                                <a
-                                    href={item.link}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="channel-action-link"
-                                    title={item.actionText}
-                                >
-                                    <span>{item.actionText}</span>
-                                    <ExternalLink size={13} />
-                                </a>
-                            ) : (
-                                <span className="channel-static-badge">{item.actionText}</span>
-                            )}
-                        </div>
-                    );
-                })}
-            </div>
-
-            {/* Interactive Contact Form */}
-            <section className="contact-form-section tilt-3d">
-                <div className="form-header-bar">
-                    <div className="form-header-icon">
-                        <MessageSquare size={20} />
-                    </div>
-                    <div>
-                        <h3 className="form-title">Send a Direct Message</h3>
-                        <p className="form-subtitle">I typically respond within 24 hours.</p>
-                    </div>
+                                <span className="channel-value">{item.value}</span>
+                                <span className="channel-action">
+                                    {item.actionText}
+                                    {item.link && <ExternalLink size={12} />}
+                                </span>
+                            </>
+                        );
+                        return item.link ? (
+                            <a key={item.title} href={item.link} target="_blank" rel="noreferrer" className="channel" title={item.actionText}>
+                                {inner}
+                            </a>
+                        ) : (
+                            <div key={item.title} className="channel">{inner}</div>
+                        );
+                    })}
                 </div>
 
-                {isSent ? (
-                    <div className="form-success-banner">
-                        <CheckCircle2 size={44} color="#10b981" />
-                        <h4 className="success-heading">Message Sent Successfully!</h4>
-                        <p className="success-text">
-                            Thank you for reaching out, Devendra has received your note and will get back to you soon.
-                        </p>
+                {/* Contact Form */}
+                <div className="stamp-card form-card reveal">
+                    <div className="form-head">
+                        <PuffyIcon name="message" size={56} />
+                        <div>
+                            <h3 className="card-title is-big">Send a Direct Message</h3>
+                            <p className="body-text is-small">I typically respond within 24 hours.</p>
+                        </div>
                     </div>
-                ) : (
-                    <form onSubmit={handleSubmit} className="contact-interactive-form">
-                        {/* Subject Chips Selector */}
-                        <div className="subject-selector-group">
-                            <label className="field-label">Purpose of Contact:</label>
-                            <div className="subject-chips">
-                                {subjects.map((subj) => (
-                                    <button
-                                        key={subj}
-                                        type="button"
-                                        className={`subject-chip ${formData.subject === subj ? 'active' : ''}`}
-                                        onClick={() => setFormData({ ...formData, subject: subj })}
-                                    >
-                                        {subj}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
 
-                        <div className="input-row-dual">
+                    {isSent ? (
+                        <div className="form-success">
+                            <CheckCircle2 size={44} className="text-blue" />
+                            <h4 className="work-title is-medium">Message Sent Successfully!</h4>
+                            <p className="body-text">
+                                Thank you for reaching out, Devendra has received your note and will get back to you soon.
+                            </p>
+                        </div>
+                    ) : (
+                        <form onSubmit={handleSubmit} className="contact-form">
                             <div className="form-group">
-                                <label className="field-label" htmlFor="fullname">Your Name</label>
-                                <input
-                                    id="fullname"
-                                    type="text"
-                                    name="fullname"
-                                    value={formData.fullname}
+                                <span className="field-label" id="subject-label">Purpose of Contact:</span>
+                                <div className="chip-row" role="group" aria-labelledby="subject-label">
+                                    {subjects.map((subj) => (
+                                        <button
+                                            key={subj}
+                                            type="button"
+                                            className={`chip is-toggle ${formData.subject === subj ? 'is-active' : ''}`}
+                                            aria-pressed={formData.subject === subj}
+                                            onClick={() => setFormData({ ...formData, subject: subj })}
+                                        >
+                                            {subj}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label className="field-label" htmlFor="fullname">Your Name</label>
+                                    <input
+                                        id="fullname"
+                                        type="text"
+                                        name="fullname"
+                                        value={formData.fullname}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Devendra Mishra"
+                                        className="field"
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="field-label" htmlFor="email">Your Email Address</label>
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="you@example.com"
+                                        className="field"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="form-group">
+                                <label className="field-label" htmlFor="message">Your Message</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
                                     onChange={handleChange}
                                     required
-                                    placeholder="Devendra Mishra"
-                                    className="custom-form-input"
+                                    rows={5}
+                                    placeholder="Hi Devendra, let's collaborate on..."
+                                    className="field"
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label className="field-label" htmlFor="email">Your Email Address</label>
-                                <input
-                                    id="email"
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="you@example.com"
-                                    className="custom-form-input"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="form-group">
-                            <label className="field-label" htmlFor="message">Your Message</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                required
-                                rows={5}
-                                placeholder="Hi Devendra, let's collaborate on..."
-                                className="custom-form-textarea"
-                            />
-                        </div>
-
-                        <button
-                            type="submit"
-                            disabled={isSending}
-                            className="send-message-btn-3d"
-                        >
-                            {isSending ? (
-                                <>
-                                    <span className="sending-spinner"></span>
-                                    <span>Sending Message...</span>
-                                </>
-                            ) : (
-                                <>
-                                    <Send size={18} />
-                                    <span>Send Message</span>
-                                </>
-                            )}
-                        </button>
-                    </form>
-                )}
-            </section>
-        </article>
+                            <button
+                                type="submit"
+                                disabled={isSending}
+                                className="btn-dark is-wide"
+                            >
+                                {isSending ? (
+                                    <>
+                                        <span className="spinner"></span>
+                                        <span>Sending Message...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Send size={18} />
+                                        <span>Send Message</span>
+                                    </>
+                                )}
+                            </button>
+                        </form>
+                    )}
+                </div>
+            </div>
+        </section>
     );
 };
 

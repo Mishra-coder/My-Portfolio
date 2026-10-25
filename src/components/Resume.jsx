@@ -4,11 +4,12 @@ import {
     Download,
     ExternalLink,
     FileText,
-    Sparkles,
     GraduationCap,
     Code,
     Briefcase
 } from 'lucide-react';
+import SectionHead from './SectionHead';
+import { PuffyIcon } from './Icons';
 
 const Resume = () => {
     const resumePdf = "/DEVENDRA_RESUME.pdf";
@@ -18,121 +19,112 @@ const Resume = () => {
     };
 
     return (
-        <article id="resume" className="resume active editorial-section-card" data-page="resume">
-            <header className="page-header resume-header-row">
-                <div>
-                    <div className="badge-pill">
-                        <Sparkles size={14} />
-                        <span>Curriculum Vitae</span>
-                    </div>
-                    <h2 className="h2 article-title">Resume</h2>
-                </div>
+        <section id="resume" className="section">
+            <div className="container">
+                <div className="resume-head">
+                    <SectionHead num="06" label="Curriculum Vitae" title="Resume" />
 
-                <div className="resume-actions-top">
-                    <a
-                        href={resumePdf}
-                        download="Devendra_Mishra_Resume.pdf"
-                        className="download-btn-3d"
-                        onClick={handleDownload}
-                    >
-                        <Download size={17} />
-                        <span>Download CV</span>
-                    </a>
-                    <a
-                        href={resumePdf}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="open-tab-btn"
-                        title="Open PDF in new tab"
-                    >
-                        <ExternalLink size={17} />
-                    </a>
-                </div>
-            </header>
-
-            {/* Quick Resume Summary Card */}
-            <div className="resume-summary-card tilt-3d">
-                <div className="summary-block">
-                    <div className="summary-icon cyan">
-                        <GraduationCap size={20} />
-                    </div>
-                    <div>
-                        <h4 className="summary-title">Education</h4>
-                        <p className="summary-sub">B.Tech Computer Science (AI & ML)</p>
-                        <span className="summary-detail">Newton School of Technology, Pune • 2024–2028</span>
+                    <div className="resume-actions reveal">
+                        <a
+                            href={resumePdf}
+                            download="Devendra_Mishra_Resume.pdf"
+                            className="btn-dark"
+                            onClick={handleDownload}
+                        >
+                            <PuffyIcon name="resume" size={30} className="is-inline" />
+                            <span>Download CV</span>
+                        </a>
+                        <a
+                            href={resumePdf}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="btn-cream is-icon"
+                            title="Open PDF in new tab"
+                            aria-label="Open PDF in new tab"
+                        >
+                            <ExternalLink size={17} />
+                        </a>
                     </div>
                 </div>
 
-                <div className="summary-block">
-                    <div className="summary-icon violet">
-                        <Code size={20} />
+                {/* Quick Resume Summary */}
+                <div className="highlights-grid">
+                    <div className="stamp-card highlight-card reveal">
+                        <span className="clay-icon is-blue"><GraduationCap size={20} /></span>
+                        <div>
+                            <strong>Education</strong>
+                            <p className="highlight-sub">B.Tech Computer Science (AI & ML)</p>
+                            <p>Newton School of Technology, Pune • 2024–2028</p>
+                        </div>
                     </div>
-                    <div>
-                        <h4 className="summary-title">Core Stack</h4>
-                        <p className="summary-sub">Full Stack & Mobile Engineer</p>
-                        <span className="summary-detail">React, Node.js, React Native, Python, MongoDB, SQL</span>
+
+                    <div className="stamp-card highlight-card reveal">
+                        <span className="clay-icon is-orange"><Code size={20} /></span>
+                        <div>
+                            <strong>Core Stack</strong>
+                            <p className="highlight-sub">Full Stack & Mobile Engineer</p>
+                            <p>React, Node.js, React Native, Python, MongoDB, SQL</p>
+                        </div>
+                    </div>
+
+                    <div className="stamp-card highlight-card reveal">
+                        <span className="clay-icon is-green"><Briefcase size={20} /></span>
+                        <div>
+                            <strong>Career Focus</strong>
+                            <p className="highlight-sub">Scalable Web & AI Systems</p>
+                            <p>Open-source contributions, high performance apps</p>
+                        </div>
                     </div>
                 </div>
 
-                <div className="summary-block">
-                    <div className="summary-icon emerald">
-                        <Briefcase size={20} />
+                {/* Resume Viewer */}
+                <div className="soft-card resume-viewer reveal">
+                    <div className="viewer-bar">
+                        <div className="viewer-dots" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div className="viewer-title">
+                            <FileText size={14} />
+                            <span>DEVENDRA_RESUME.pdf</span>
+                        </div>
+                        <a
+                            href={resumePdf}
+                            download="Devendra_Mishra_Resume.pdf"
+                            className="viewer-save"
+                            onClick={handleDownload}
+                        >
+                            <Download size={14} />
+                            <span>Save</span>
+                        </a>
                     </div>
-                    <div>
-                        <h4 className="summary-title">Career Focus</h4>
-                        <p className="summary-sub">Scalable Web & AI Systems</p>
-                        <span className="summary-detail">Open-source contributions, high performance apps</span>
+
+                    <div className="viewer-frame">
+                        <iframe
+                            src={`${resumePdf}#view=FitH&toolbar=0`}
+                            width="100%"
+                            height="1000px"
+                            title="Devendra Mishra Resume PDF"
+                            loading="lazy"
+                        >
+                            <div className="pdf-fallback">
+                                <p>Unable to display PDF preview in this browser.</p>
+                                <a
+                                    href={resumePdf}
+                                    download="Devendra_Mishra_Resume.pdf"
+                                    className="btn-dark"
+                                    onClick={handleDownload}
+                                >
+                                    <PuffyIcon name="resume" size={30} className="is-inline" />
+                                    <span>Download Devendra_Resume.pdf</span>
+                                </a>
+                            </div>
+                        </iframe>
                     </div>
                 </div>
             </div>
-
-            {/* Resume Viewer Container */}
-            <section className="resume-viewer-wrapper tilt-3d">
-                <div className="viewer-browser-bar">
-                    <div className="browser-dots">
-                        <span className="dot red"></span>
-                        <span className="dot yellow"></span>
-                        <span className="dot green"></span>
-                    </div>
-                    <div className="browser-title">
-                        <FileText size={14} />
-                        <span>DEVENDRA_RESUME.pdf</span>
-                    </div>
-                    <a
-                        href={resumePdf}
-                        download="Devendra_Mishra_Resume.pdf"
-                        className="quick-download-link"
-                        onClick={handleDownload}
-                    >
-                        <Download size={14} />
-                        <span>Save</span>
-                    </a>
-                </div>
-
-                <div className="resume-iframe-container">
-                    <iframe
-                        src={`${resumePdf}#view=FitH&toolbar=0`}
-                        width="100%"
-                        height="1000px"
-                        title="Devendra Mishra Resume PDF"
-                        className="resume-iframe"
-                    >
-                        <div className="pdf-fallback-box">
-                            <p>Unable to display PDF preview in this browser.</p>
-                            <a
-                                href={resumePdf}
-                                download="Devendra_Mishra_Resume.pdf"
-                                className="download-btn-3d"
-                                onClick={handleDownload}
-                            >
-                                <Download size={16} />
-                                <span>Download Devendra_Resume.pdf</span>
-                            </a>
-                        </div>
-                    </iframe>
-                </div>
-            </section>
-        </article>
+        </section>
     );
 };
 
